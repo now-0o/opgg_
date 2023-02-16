@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <title>롤 전적 검색 OP.GG - 전적 검색, 관전, 리플레이, 챔피언 공략, 카운터, 랭킹</title>
+    <link rel="stylesheet" href="/style/reset.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link rel="stylesheet" href="/style/index_champ.css">
+    <style>
+        @media (max-width:1024px) {
+            .logo {
+                height: 40px;
+                background-color: var(--point);
+            }
+            .lnb ul, .gnb {
+                display: none;
+            }
+            .lnb-btn, .gnb-btn {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 0 10px;
+            }
+            .lnb-btn img, .gnb-btn img {
+                width: 25px;
+            }
+            .middle-content ul {
+                justify-content: center;
+            }
+            .bottom-content {
+                justify-content: center;
+                text-align: center;
+            }
+            .adBox, .boardBox, footer {
+                width: 95%;
+            }
+            footer {
+                margin: 10px auto;
+            }
+            .footer-contents, .footer-bottom {
+                width: 100%;
+            }
+            .footer-contents div {
+                font-size: 11px;
+            }
+            .background {
+                position: fixed;
+                width: 100%;
+                height: 100vh;
+                background: rgba(0, 0, 0, 0.61);
+                display: none;
+            }
+            .background.active {
+                display: block;
+            }
+            .lnb-modal {
+                width: 250px;
+                height: 280px;
+                background-color: white;
+                border-radius: 5px;
+                display: none;
+                position: fixed;
+                left: 35%;
+                top: 35%;
+            }
+            .lnb-modal.active {
+                display: block;
+            }
+            .modal-top {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 5px 10px;
+                border-bottom: 1px solid var(--top_menu);
+                font-weight: bold;
+                font-size: 14px;
+            }
+            .modal-top a {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .modal-contents ul {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 5px;
+                margin-top: 20px;
+                justify-content: center;
+                align-items: center;
+            }
+            .modal-contents li a {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                font-size: 10px;
+                color: var(--hover);
+                width: 70px;
+                height: 70px;
+            }
+            .modal-contents span:nth-child(1) {
+                background-color: var(--hover);
+                width: 40px;
+                height: 40px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 40px;
+            }
+            .modal-contents span:nth-child(1) img {
+                width: 70%;
+            }
+            .gnb-slide {
+                width: 250px;
+                height: 100vh;
+                background-color: var(--gnb);
+                display: flex;
+                flex-direction: column;
+                position: fixed;
+                right: -250px;
+                transition: .4s;
+            }
+            .gnb-slide.active {
+                right: 0;
+            }
+            .gnb-slide>img {
+                width: 30px;
+            }
+            .gnb-slide>div {
+                background-color: white;
+                padding-left: 15px;
+            }
+            .gnb-slide>span {
+                padding-left: 15px;
+            }
+            .gnb-slide>a:nth-child(1) {
+                width: 30px;
+            }
+            .gnb-slide>a:nth-child(2) {
+                width: 220px;
+                background-color: var(--bgc);
+                height: 60px;
+                color: white;
+                border-radius: 5px;
+                padding-left: 15px;
+                line-height: 60px;
+                margin: 5px auto 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-header">
+            <div class="left">
+                <div class="logo">
+                    <h1>OPGG</h1>
+                    <img src="/images/opgglogo.svg" alt="">
+                </div>
+                <div class="lnb">
+                    <ul>
+                        <li>
+                            <img src="/images/img-navi-lol-white.svg" alt="">
+                            <span>리그오브레전드</span>
+                        </li>
+                        <li><a href="#">
+                            <img src="/images/01-icon-00-logo-icon-opggsquare.svg" alt="">
+                            <span>데스크톱</span>
+                        </a></li>
+                        <li><a href="/valorant">
+                            <img src="/images/img-navi-valorant-white.svg" alt="">
+                            <span>발로란트</span>
+                        </a></li>
+                        <li><a href="#">
+                            <img src="/images/img-navi-pubg-gray.svg" alt="">
+                            <span>배틀크라운드</span>
+                        </a></li>
+                        <li><a href="#">
+                            <img src="/images/img-navi-overwatch-gray.svg" alt="">
+                            <span>오버워치</span>
+                        </a></li>
+                        <li><a href="#">
+                            <img src="/images/img_navi_bs.svg" alt="">
+                            <span>이터널 리턴</span>
+                        </a></li>
+                        <li><a href="#">
+                            <img src="/images/img_navi_esports.svg" alt="">
+                            <span>이스포츠</span>
+                        </a></li>
+                        <li><a href="#">
+                            <img src="/images/img-navi-talk-white.svg" alt="">
+                            <span>톡피지지</span>
+                        </a></li>
+                        <li><a href="/duo">
+                            <img src="/images/img-navi-duo-gray.svg" alt="">
+                            <span>Duo</span>
+                        </a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="gnb">
+                <img src="/images/icon-lightmode.svg" alt="" class="lightBtn">
+                <img src="/images/icon-world-light-blue.svg" alt="">
+                <a href="#" class="lang"><span>한국어</span><i class='bx bx-caret-down'></i></a>
+                <a href="/login" class="login">로그인</a>
+            </div>
+        </div>
+        <div class="middle-header">
+            <div class="middle-content">
+                <ul>
+                    <li><a href="/">홈</a></li>
+                    <li class="active"><a href="./index_champ">챔피언 분석</a></li>
+                    <li><a href="#">게임 모드</a></li>
+                    <li><a href="#">통계</a></li>
+                    <li><a href="#">랭킹</a></li>
+                    <li><a href="#">프로관전</a></li>
+                    <li><a href="#">멀티서치</a></li>
+                    <li><a href="#">커뮤니티</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="bottom-header">
+            <div class="bottom-content">
+                <a href="https://www.leagueoflegends.com/ko-kr/news/announcements/sr-10yr-event/?&utm_source=opgg&utm_medium=txt&utm_campaign=gnb_shaco">
+                    <p>라이엇 게임즈 문화재 지킴이 10주년 기념! 이벤트 참여하고 인게임 보상 받자!</p>
+                </a>
+            </div>
+        </div>
+    </header>
+    <section>
+        <div class="top-container">
+            <div class="banner">
+                <a href="https://esports.op.gg/champions?hl=ko_KR&version=13.1" target="_blank"><img src="/images/index_champ/qwer-banner-kr-w@2x.png" alt=""></a>
+            </div>
+        </div>
+        <div class="bottom-container">
+            <div class="left-contents">
+                <div class="option-box">
+                    <div class="option-search">
+                        <input type="text" placeholder="챔피언 검색 (가렌,ㄱㄹ, ...)">
+                    </div>
+                    <div class="option-btn">
+                        <ul>
+                            <li><a href="#" class="all-btn" value="all">
+                                <img src="/images/index_champ/icon-position-all-wh.svg" alt="">
+                            </a></li>
+                            <li><a href="#" class="top-btn" value="top">
+                                <img src="/images/index_champ/icon-position-top.svg" alt="">
+                            </a></li>
+                            <li><a href="#" class="jug-btn" value="jug">
+                                <img src="/images/index_champ/icon-position-jug.svg" alt="">
+                            </a></li>
+                            <li><a href="#" class="mid-btn" value="mid">
+                                <img src="/images/index_champ/icon-position-mid.svg" alt="">
+                            </a></li>
+                            <li><a href="#" class="bot-btn" value="bot">
+                                <img src="/images/index_champ/icon-position-bot.svg" alt="">
+                            </a></li>
+                            <li><a href="#" class="sup-btn" value="sup">
+                                <img src="/images/index_champ/icon-position-sup.svg" alt="">
+                            </a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="champ-container">
+                    <div class="champ-box">
+                            <!-- <img src="http://ddragon.leagueoflegends.com/cdn/13.1.1/img/champion/Aatrox.png" alt=""> -->
+                    </div>
+                </div>
+            </div>
+            <div class="right-contents">
+                <div class="click-champ">
+                    <img src="/images/index_champ/left-arrow-svgrepo-com.svg" alt="">
+                    <span>챔피언을 클릭해주세요.</span>
+                </div>
+                    <div class="top-info"></div>
+                    <div class="skill-info bottom-info">
+                        <div class="click-skill">
+                            <span>스킬</span>
+                            <img src="/images/index_champ/chevron-down-regular-240.png" alt="" class="arrow">
+                        </div>
+                        <div class="skill"></div>
+                    </div>
+                    <div class="lore-info bottom-info">
+                        <div class="click-lore">
+                            <span>스토리</span>
+                            <img src="/images/index_champ/chevron-down-regular-240.png" alt="" class="arrow">
+                        </div>
+                        <div class="lore">
+
+                        </div>
+                    </div>
+                    <div class="illu-info bottom-info">
+                        <div class="click-illu">
+                            <span>일러스트</span>
+                            <img src="/images/index_champ/chevron-down-regular-240.png" alt="" class="arrow">
+                        </div>
+                        <div class="illu"></div>
+                    </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+            <div class="footer-contents">
+                <div>
+                    <a href="#">
+                        <img src="/images/index_champ/icon-opgglogo-gray.svg" alt="" class="footer-logo">
+                    </a>
+                </div>
+                <div><span>OP.GG</span>
+                    <ul>
+                        <li><a href="#">About OP.GG</a></li>
+                        <li><a href="#">Company</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">로고 히스토리</a></li>
+                    </ul>
+                </div>
+                <div><span>Products</span>
+                    <ul>
+                        <li><a href="#">리그오브레전드<img src="/images/index_champ/icon-game.svg" alt="" class="footerIcon"></a></li>
+                        <li><a href="#">데스크톱<img src="/images/index_champ/icon-game.svg" alt="" class="footerIcon"></a></li>
+                        <li><a href="#">발로란트<img src="/images/index_champ/icon-game.svg" alt="" class="footerIcon"></a></li>
+                        <li><a href="#">배틀그라운드<img src="/images/index_champ/icon-game.svg" alt="" class="footerIcon"></a></li>
+                        <li><a href="#">오버워치<img src="/images/index_champ/icon-game.svg" alt="" class="footerIcon"></a></li>
+                        <li><a href="#">이터널 리턴<img src="/images/index_champ/icon-game.svg" alt="" class="footerIcon"></a></li>
+                        <li><a href="#">이스포츠<img src="/images/index_champ/icon-game.svg" alt="" class="footerIcon"></a></li>
+                        <li><a href="#">톡피지지<img src="/images/index_champ/icon-game.svg" alt="" class="footerIcon"></a></li>
+                        <li><a href="#">Duo<img src="/images/index_champ/icon-game.svg" alt="" class="footerIcon"></a></li>
+                    </ul>
+                </div>
+                <div><span>Apps</span>
+                    <ul>
+                        <li><a href="#">OP.GG Android App<img src="/images/index_champ/icon-game.svg" alt="" class="footerIcon"></a></li>
+                        <li><a href="#">OP.GG iOS App<img src="/images/index_champ/icon-game.svg" alt="" class="footerIcon"></a></li>
+                        <li><a href="#">IFI.GG Android App</a></li>
+                        <li><a href="#">IFI.GG iOS App</a></li>
+                    </ul>
+                </div>
+                <div><span>Resources</span>
+                    <ul>
+                        <li><a href="#">개인정보처리방침</a></li>
+                        <li><a href="#">이용약관</a></li>
+                        <li><a href="#">도움말</a></li>
+                        <li><a href="#">문의/피드백</a></li>
+                    </ul>
+                </div>
+                <div><span>More</span>
+                    <ul>
+                        <li><a href="#">제휴</a></li>
+                        <li><a href="#">광고</a></li>
+                        <li><a href="#">채용</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2012-2022 OP.GG. OP.GG isn’t endorsed by Riot Games and doesn’t reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.</p>
+                <a href="https://twitter.com/globalopgg/"><img src="/images/icon-logo-twitter.svg" alt=""></a>
+                <a href="https://www.instagram.com/opgginc/"><img src="/images/icon-logo-instagram.svg" alt=""></a>
+                <a href="https://www.facebook.com/lolopgg/"><img src="/images/icon-logo-facebook.svg" alt=""></a>
+            </div>
+    </footer>
+</body>
+<script src="/script/index_champ.js"></script>
+</html>

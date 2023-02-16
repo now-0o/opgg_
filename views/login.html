@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEMBER.OP.GG</title>
+    <link rel="stylesheet" href="./style/reset.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <style>
+        :root {
+            --bgc: #f3f5f7;
+            --facebook: #3c5a99;
+            --apple: #212529;
+            --line: #dddfe4;
+        }
+        body {
+            background-color: var(--bgc);
+            height: 100vh;
+            font-family: 'Noto Sans KR', sans-serif;
+            position: relative;
+        }
+        section {
+            width: 450px;
+            height: 500px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .section {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .login-container {
+            width: 450px;
+            height: 500px;
+            background-color: white;
+            box-shadow: 0 0 4px rgba(0, 0, 0, 0.178);
+        }
+        .login-contents {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+        .content1 img {
+            width: 130px;
+            margin: 20px 0 30px;
+        }
+        .content2 {
+            width: 100%;
+        }
+        .content2 p {
+            margin-bottom: 10px;
+        }
+        .content2 a {
+            font-weight: 400;
+            color: white;
+            display: block;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            width: 100%;
+            height: 50px;
+            border-radius: 3px;
+        }
+        .content2 a:nth-child(2) {
+            background-color: var(--facebook);
+            margin-bottom: 10px;
+            
+        }
+        .content2 a:nth-child(3) {
+            background-color: var(--apple);
+        }
+        .content2 img {
+            width: 30px;
+        }
+        .content3 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            color: var(--line);
+            font-weight: 300;
+            font-size: 12px;
+            margin: 20px 0 30px;
+        }
+        .content3::before, .content3::after {
+            content: '';
+            width: 150px;
+            height: 1px;
+            background-color: var(--line);
+            display: block;
+        }
+        .content4 p {
+            margin-bottom: 30px;
+        }
+        .content4 input {
+            width: 100%;
+            height: 30px;
+            margin-bottom: 30px;
+            border-top: 0;
+            border-left: 0;
+            border-right: 0;
+            border-bottom: 1px solid var(--line);
+            font-size: 16px;
+            outline: none;
+        }
+        .check {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            font-weight: 300;
+            font-size: 14px;
+        }
+        .checkBox {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        .checkBox input {
+            width: 20px;
+            height: 20px;
+            margin: 0;
+        }
+        a.login-a {
+            color: #1ea1f7;
+            text-decoration: underline;
+        }
+        .content5 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 40px;
+            gap: 10px;
+            width: 100%;
+        }
+        .content5>a {
+            display: block;
+            background-color: #dddfe4;
+            color: white;
+            width: 100%;
+            text-align: center;
+            line-height: 50px;
+            height: 50px;
+        }
+        .content5 div {
+            display: flex;
+            gap: 10px;
+            font-size: 16px;
+            font-weight: 300;
+        }
+        .login-container+a {
+            font-size: 14px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="section">
+            <div class="login-container">
+                <div class="login-contents">
+                    <div class="content1">
+                        <a href="./index.html">
+                            <img src="./images/img_opgglogo.1924961d.svg" alt="">
+                        </a>
+                    </div>
+                    <!-- <div class="content2">
+                        <p>간편 로그인</p>
+                        <a href="#">
+                            <img src="./images/icon_facebook_wh.6ab689d7.svg" alt="">
+                            <span>페이스북으로 로그인</span>
+                        </a>
+                        <a href="#">
+                            <img src="./images/logo_apple.dca28233.svg" alt="">
+                            <span>Apple로 로그인</span>
+                        </a>
+                    </div>
+                    <div class="content3">
+                        <span>OR</span>
+                    </div> -->
+                    <div class="content4">
+                        <p>이메일 로그인</p>
+                        <input type="text" placeholder="이메일 주소">
+                        <input type="text" placeholder="비밀번호">
+                        <div class="check">
+                            <div class="checkBox">
+                                <input type="checkbox" id="check">
+                                <label for="check">로그인 상태 유지하기</label>
+                            </div>
+                            <a href="#" class="login-a">비밀번호를 잊으셨나요?</a>
+                        </div>
+                    </div>
+                    <div class="content5">
+                        <a href="#">로그인</a>
+                        <div>
+                            <span>OP.GG에 처음이세요?</span>
+                            <a href="/login/register" class="login-a">회원가입하기</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <span>한국어</span><i class='bx bx-caret-down'></i>
+            </a>
+        </div>
+    </section>
+</body>
+</html>

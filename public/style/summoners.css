@@ -1,0 +1,154 @@
+:root {
+    --resultWin : #5383e8;
+    --resultLose : #e84057;
+    --gameWin : #ecf2ff;
+    --gameLose : #fff0f3;
+}
+.left a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.top-container {
+    background-color: white;
+    width: 100%;
+}
+
+.sumContent {
+    display: flex;
+    gap: 20px;
+    width: 1000px;
+    height: 200px;
+    padding: 30px 0;
+    margin: 0 auto;
+}
+.sumInfo {
+    position: relative;
+    width: 130px;
+    height: 130px;
+}
+.sumIcon{
+    width: 130px;
+    border-radius: 15px;
+}
+.sumLevel {
+    position: absolute;
+    display: inline-block;
+    bottom: -12px;
+    left: 50%;
+    transform: translate(-50%);
+    background-color: var(--article-dark);
+    padding: 0 7px;
+    border-radius: 30px;
+    color: white;
+}
+.sumName {
+    font-weight: 600;
+    font-size: 26px;
+}
+.bottom-container {
+    width: 1000px;
+    margin: 10px auto;
+    background-color: #eaeef1;
+    display: flex;
+    gap: 10px;
+}
+.tier-container {
+    width: 30%;
+    background-color: white;
+    position: relative;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    gap: 10px;
+    padding: 8px 10px 10px 15px;
+}
+.tier-container p {
+    font-weight: 500;
+    font-size: 12px;
+}
+.tier-container p::after {
+    content: '';
+    display: block;
+    width: 100%;
+    position: absolute;
+    height: 1px;
+    background-color: #eaeef1;
+    margin-top: 4px;
+    left: 0;
+}
+.tierInfo {
+    display: flex;
+    gap: 10px;
+    margin-top: 4px;
+}
+.tierImg-box {
+    width: 70px;
+    height: 70px;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #eff2f5;
+}
+.tierImg {
+    width: 70px;
+}
+.tier {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.resultInfo {
+    font-size: 12px;
+    color: #9aa4af;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 50px;
+}
+.match-container {
+    width: 70%;
+}
+.match-box {
+    width: 100%;
+    height: 100px;
+    background-color: var(--gameWin);
+    display: flex;
+    margin: 0 auto;
+    border-radius: 10px;
+    gap: 10px;
+}
+.match-box.lose {
+    background-color: var(--gameLose);
+}
+.result-color {
+    background-color: var(--resultWin);
+    width: 10px;
+    height: 100%;
+    border-radius: 10px 0 0 10px;
+}
+.match-box.lose .result-color {
+    background-color: var(--resultLose);
+}
+.game-info {
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    padding: 10px;
+}
+.game-info>div {
+    display: flex;
+    flex-direction: column;
+}
+.game-type {
+    font-weight: 600;
+    color: var(--resultWin);
+}
+.match-box.lose .game-type {
+    color: var(--resultLose);
+}
+.game-dura {
+    color: #9aa4af;
+}

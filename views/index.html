@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>롤 전적 검색 OP.GG - 전적 검색, 관전, 리플레이, 챔피언 공략, 카운터, 랭킹</title>
+    <link rel="stylesheet" href="./style/reset.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link rel="stylesheet" href="./style/index.css">
+    <style>
+        :root {
+            --bgc : #5383e8;
+            --point : #28344e;
+            --hover : #2F436E;
+            --top_menu : #bec3cc;
+            --sub_menu : #adcbff;
+            --yellow : #FFB900;
+            --download : #202D37;
+            --dark : #1c1c1f;
+            --article-dark : #31313c;
+            --gnb : #f7f7f9;
+        }
+        @media (max-width:1024px) {
+            .logo {
+                height: 40px;
+                background-color: var(--point);
+            }
+            .lnb ul, .gnb {
+                display: none;
+            }
+            .lnb-btn, .gnb-btn {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 0 10px;
+            }
+            .lnb-btn img, .gnb-btn img {
+                width: 25px;
+            }
+            .middle-content ul {
+                justify-content: center;
+            }
+            .bottom-content {
+                justify-content: center;
+                text-align: center;
+            }
+            .adBox, .boardBox, footer {
+                width: 95%;
+            }
+            footer {
+                margin: 10px auto;
+            }
+            .footer-contents, .footer-bottom {
+                width: 100%;
+            }
+            .footer-contents div {
+                font-size: 11px;
+            }
+            .background {
+                position: fixed;
+                width: 100%;
+                height: 100vh;
+                background: rgba(0, 0, 0, 0.61);
+                display: none;
+            }
+            .background.active {
+                display: block;
+            }
+            .lnb-modal {
+                width: 250px;
+                height: 280px;
+                background-color: white;
+                border-radius: 5px;
+                display: none;
+                position: fixed;
+                left: 35%;
+                top: 35%;
+            }
+            .lnb-modal.active {
+                display: block;
+            }
+            .modal-top {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 5px 10px;
+                border-bottom: 1px solid var(--top_menu);
+                font-weight: bold;
+                font-size: 14px;
+            }
+            .modal-top a {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .modal-contents ul {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 5px;
+                margin-top: 20px;
+                justify-content: center;
+                align-items: center;
+            }
+            .modal-contents li a {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                font-size: 10px;
+                color: var(--hover);
+                width: 70px;
+                height: 70px;
+            }
+            .modal-contents span:nth-child(1) {
+                background-color: var(--hover);
+                width: 40px;
+                height: 40px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 40px;
+            }
+            .modal-contents span:nth-child(1) img {
+                width: 70%;
+            }
+            .gnb-slide {
+                width: 250px;
+                height: 100vh;
+                background-color: var(--gnb);
+                display: flex;
+                flex-direction: column;
+                position: fixed;
+                right: -250px;
+                transition: .4s;
+            }
+            .gnb-slide.active {
+                right: 0;
+            }
+            .gnb-slide>img {
+                width: 30px;
+            }
+            .gnb-slide>div {
+                background-color: white;
+                padding-left: 15px;
+            }
+            .gnb-slide>span {
+                padding-left: 15px;
+            }
+            .gnb-slide>a:nth-child(1) {
+                width: 30px;
+            }
+            .gnb-slide>a:nth-child(2) {
+                width: 220px;
+                background-color: var(--bgc);
+                height: 60px;
+                color: white;
+                border-radius: 5px;
+                padding-left: 15px;
+                line-height: 60px;
+                margin: 5px auto 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <div class="lnb-modal">
+        <div class="modal-top">
+            <span>GAME STATS</span>
+            <a href="#" class="lnb-off"><img src="./images/duo/cross.svg" alt=""></a>
+        </div>
+        <div class="modal-contents">
+            <ul>
+                <li><a href="./index.html">
+                    <span><img src="./images/img-navi-lol-white.svg" alt=""></span>
+                    <span>리그오브레전드</span>
+                </a></li>
+                <li><a href="#">
+                    <span><img src="./images/01-icon-00-logo-icon-opggsquare.svg" alt=""></span>
+                    <span>데스크톱</span>
+                </a></li>
+                <li><a href="./valorant.html">
+                    <span><img src="./images/img-navi-valorant-white.svg" alt=""></span>
+                    <span>발로란트</span>
+                </a></li>
+                <li><a href="#">
+                    <span><img src="./images/img-navi-pubg-gray.svg" alt=""></span>
+                    <span>배틀그라운드</span>
+                </a></li>
+                <li><a href="#">
+                    <span><img src="./images/img-navi-overwatch-gray.svg" alt=""></span>
+                    <span>오버워치</span>
+                </a></li>
+                <li><a href="#">
+                    <span><img src="./images/img_navi_bs.svg" alt=""></span>
+                    <span>이터널 리턴</span>
+                </a></li>
+                <li><a href="#">
+                    <span><img src="./images/img_navi_esports.svg" alt=""></span>
+                    <span>이스포츠</span>
+                </a></li>
+                <li><a href="#">
+                    <span><img src="./images/img-navi-talk-white.svg" alt=""></span>
+                    <span>톡피지지</span>
+                </a></li>
+                <li><a href="./duo.html">
+                    <span><img src="./images/img-navi-duo-gray.svg" alt=""></span>
+                    <span>Duo</span>
+                </a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="gnb-slide">
+        <a href="#" class="gnb-off"><img src="./images/duo/cross.svg" alt=""></a>
+        <a href="./login.html">로그인</a>
+        <span>지역 선택</span>
+        <div class="gnb-country">
+            <a href="#">KR</a>
+        </div>
+        <span>언어 설정</span>
+        <div class="gnb-country">
+            <a href="#">한국어</a>
+        </div>
+        <span>다크모드 설정</span>
+        <div class="gnb-country">
+            <a href="#">다크 모드로 보기</a>
+            <input type="checkbox">
+        </div>
+    </div>
+    <header>
+        <div class="top-header">
+            <div class="lnb-btn">
+                <img src="./images/img-navi-lol-white.svg" alt="">
+            </div>
+            <div class="left">
+                <div class="logo">
+                    <h1>OPGG</h1>
+                    <img src="./images/opgglogo.svg" alt="">
+                </div>
+                <div class="lnb">
+                    <ul>
+                        <li>
+                            <img src="./images/img-navi-lol-white.svg" alt="">
+                            <span>리그오브레전드</span>
+                        </li>
+                        <li><a href="#">
+                            <img src="./images/01-icon-00-logo-icon-opggsquare.svg" alt="">
+                            <span>데스크톱</span>
+                        </a></li>
+                        <li><a href="/valorant">
+                            <img src="./images/img-navi-valorant-white.svg" alt="">
+                            <span>발로란트</span>
+                        </a></li>
+                        <li><a href="#">
+                            <img src="./images/img-navi-pubg-gray.svg" alt="">
+                            <span>배틀크라운드</span>
+                        </a></li>
+                        <li><a href="#">
+                            <img src="./images/img-navi-overwatch-gray.svg" alt="">
+                            <span>오버워치</span>
+                        </a></li>
+                        <li><a href="#">
+                            <img src="./images/img_navi_bs.svg" alt="">
+                            <span>이터널 리턴</span>
+                        </a></li>
+                        <li><a href="#">
+                            <img src="./images/img_navi_esports.svg" alt="">
+                            <span>이스포츠</span>
+                        </a></li>
+                        <li><a href="#">
+                            <img src="./images/img-navi-talk-white.svg" alt="">
+                            <span>톡피지지</span>
+                        </a></li>
+                        <li><a href="/duo">
+                            <img src="./images/img-navi-duo-gray.svg" alt="">
+                            <span>Duo</span>
+                        </a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="gnb-btn">
+                <img src="./images/icon-login-wh.svg" alt="">
+            </div>
+            <div class="gnb">
+                <img src="./images/icon-lightmode.svg" alt="" class="lightBtn">
+                <img src="./images/icon-world-light-blue.svg" alt="">
+                <a href="#" class="lang"><span>한국어</span><i class='bx bx-caret-down'></i></a>
+                <a href="/login" class="login">로그인</a>
+            </div>
+        </div>
+        <div class="middle-header">
+            <div class="middle-content">
+                <ul>
+                    <li class="active"><a href="#">홈</a></li>
+                    <li><a href="/subdir/index_champ">챔피언 분석</a></li>
+                    <li><a href="#">랭킹</a></li>
+                    <li><a href="#">프로관전</a></li>
+                    <li><a href="#">멀티서치</a></li>
+                    <li><a href="#">커뮤니티</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="bottom-header">
+            <div class="bottom-content">
+                <a href="https://www.leagueoflegends.com/ko-kr/news/announcements/sr-10yr-event/?&utm_source=opgg&utm_medium=txt&utm_campaign=gnb_shaco">
+                    <p>라이엇 게임즈 문화재 지킴이 10주년 기념! 이벤트 참여하고 인게임 보상 받자!</p>
+                </a>
+            </div>
+        </div>
+    </header>
+    <section>
+        <div class="main-contents">
+            <div class="main">
+                <img src="./images/20221128130320.caa7aad859f849cdb4aaaf73d51f73c6.png" alt="">
+            </div>
+            <div class="search">
+                <div class="search-box">
+                    <form class="search-contents">
+                        <div>
+                            <p>Region</p>
+                                <a href="#"><span>Korea</span><i class='bx bx-caret-down'></i></a>           
+                        </div>
+                        <div>
+                            <p>Search</p>
+                            <input type="text" placeholder="소환사명, 소환사명, ..." class="mainSearch">
+                        </div>
+                        <button>.GG</button>
+                    </form>
+                </div>
+                <a href="#" class="download">
+                    <img src="./images/icon-window-white.svg" alt="">
+                    <span>데스크탑 무료 다운로드</span>
+                </a>
+            </div>
+            <div class="adver">
+                <div class="adBox"><img src="./images/advertise.jpg" alt=""></div>
+            </div>
+            <div class="board">
+                <div class="boardBox">
+                    <a href="#">
+                        <h2>OP.GG Talk 인기글</h2>
+                    </a>
+                    <div class="board-contents">
+                        <article class="board-content">
+                            <div class="content1">1</div>
+                            <div class="content2"><img src="./images/20221203001846.2146490.jpg" alt=""></div>
+                            <div class="content3">
+                                <p>title1</p>
+                                <ul>
+                                    <li>N시간 전</li>
+                                    <li>username</li>
+                                </ul>
+                            </div>
+                        </article>
+                        <article class="board-content">
+                            <div class="content1">2</div>
+                            <div class="content2"><img src="./images/20221203001846.2146490.jpg" alt=""></div>
+                            <div class="content3">
+                                <p>title2</p>
+                                <ul>
+                                    <li>N시간 전</li>
+                                    <li>username</li>
+                                </ul>
+                            </div>
+                        </article>
+                        <article class="board-content">
+                            <div class="content1">3</div>
+                            <div class="content2"><img src="./images/20221203001846.2146490.jpg" alt=""></div>
+                            <div class="content3">
+                                <p>title3</p>
+                                <ul>
+                                    <li>N시간 전</li>
+                                    <li>username</li>
+                                </ul>
+                            </div>
+                        </article>
+                        <article class="board-content">
+                            <div class="content1">4</div>
+                            <div class="content2"><img src="./images/20221203001846.2146490.jpg" alt=""></div>
+                            <div class="content3">
+                                <p>title4</p>
+                                <ul>
+                                    <li>N시간 전</li>
+                                    <li>username</li>
+                                </ul>
+                            </div>
+                        </article>
+                        <article class="board-content">
+                            <div class="content1">5</div>
+                            <div class="content2"><img src="./images/20221203001846.2146490.jpg" alt=""></div>
+                            <div class="content3">
+                                <p>title5</p>
+                                <ul>
+                                    <li>N시간 전</li>
+                                    <li>username</li>
+                                </ul>
+                            </div>
+                        </article>
+                        <article class="board-content">
+                            <div class="content1">6</div>
+                            <div class="content2"><img src="./images/20221203001846.2146490.jpg" alt=""></div>
+                            <div class="content3">
+                                <p>title6</p>
+                                <ul>
+                                    <li>N시간 전</li>
+                                    <li>username</li>
+                                </ul>
+                            </div>
+                        </article>
+                        <article class="board-content">
+                            <div class="content1">7</div>
+                            <div class="content2"><img src="./images/20221203001846.2146490.jpg" alt=""></div>
+                            <div class="content3">
+                                <p>title7</p>
+                                <ul>
+                                    <li>N시간 전</li>
+                                    <li>username</li>
+                                </ul>
+                            </div>
+                        </article>
+                        <article class="board-content">
+                            <div class="content1">8</div>
+                            <div class="content2"><img src="./images/20221203001846.2146490.jpg" alt=""></div>
+                            <div class="content3">
+                                <p>title8</p>
+                                <ul>
+                                    <li>N시간 전</li>
+                                    <li>username</li>
+                                </ul>
+                            </div>
+                        </article>
+                        <article class="board-content">
+                            <div class="content1">9</div>
+                            <div class="content2"><img src="./images/20221203001846.2146490.jpg" alt=""></div>
+                            <div class="content3">
+                                <p>title9</p>
+                                <ul>
+                                    <li>N시간 전</li>
+                                    <li>username</li>
+                                </ul>
+                            </div>
+                        </article>
+                        <article class="board-content">
+                            <div class="content1">10</div>
+                            <div class="content2"><img src="./images/20221203001846.2146490.jpg" alt=""></div>
+                            <div class="content3">
+                                <p>title10</p>
+                                <ul>
+                                    <li>N시간 전</li>
+                                    <li>username</li>
+                                </ul>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+            <div class="footer-contents">
+                <div>
+                    <a href="#">
+                        <img src="./images/opgglogo.svg" alt="" class="footer-logo">
+                    </a>
+                </div>
+                <div><span>OP.GG</span>
+                    <ul>
+                        <li><a href="#">About OP.GG</a></li>
+                        <li><a href="#">Company</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">로고 히스토리</a></li>
+                    </ul>
+                </div>
+                <div><span>Products</span>
+                    <ul>
+                        <li><a href="#">리그오브레전드<img src="./images/icon-game-white.svg" alt="" class="footerIcon"></a></li>
+                        <li><a href="#">데스크톱<img src="./images/icon-game-white.svg" alt="" class="footerIcon"></a></li>
+                        <li><a href="#">발로란트<img src="./images/icon-game-white.svg" alt="" class="footerIcon"></a></li>
+                        <li><a href="#">배틀그라운드<img src="./images/icon-game-white.svg" alt="" class="footerIcon"></a></li>
+                        <li><a href="#">오버워치<img src="./images/icon-game-white.svg" alt="" class="footerIcon"></a></li>
+                        <li><a href="#">이터널 리턴<img src="./images/icon-game-white.svg" alt="" class="footerIcon"></a></li>
+                        <li><a href="#">이스포츠<img src="./images/icon-game-white.svg" alt="" class="footerIcon"></a></li>
+                        <li><a href="#">톡피지지<img src="./images/icon-game-white.svg" alt="" class="footerIcon"></a></li>
+                        <li><a href="#">Duo<img src="./images/icon-game-white.svg" alt="" class="footerIcon"></a></li>
+                    </ul>
+                </div>
+                <div><span>Apps</span>
+                    <ul>
+                        <li><a href="#">OP.GG Android App<img src="./images/icon-game-white.svg" alt="" class="footerIcon"></a></li>
+                        <li><a href="#">OP.GG iOS App<img src="./images/icon-game-white.svg" alt="" class="footerIcon"></a></li>
+                        <li><a href="#">IFI.GG Android App</a></li>
+                        <li><a href="#">IFI.GG iOS App</a></li>
+                    </ul>
+                </div>
+                <div><span>Resources</span>
+                    <ul>
+                        <li><a href="#">개인정보처리방침</a></li>
+                        <li><a href="#">이용약관</a></li>
+                        <li><a href="#">도움말</a></li>
+                        <li><a href="#">문의/피드백</a></li>
+                    </ul>
+                </div>
+                <div><span>More</span>
+                    <ul>
+                        <li><a href="#">제휴</a></li>
+                        <li><a href="#">광고</a></li>
+                        <li><a href="#">채용</a></li>
+                    </ul>
+                </div>
+                        </ul>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2012-2022 OP.GG. OP.GG isn’t endorsed by Riot Games and doesn’t reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.</p>
+                <a href="https://twitter.com/globalopgg/"><img src="./images/icon-logo-twitter.svg" alt=""></a>
+                <a href="https://www.instagram.com/opgginc/"><img src="./images/icon-logo-instagram.svg" alt=""></a>
+                <a href="https://www.facebook.com/lolopgg/"><img src="./images/icon-logo-facebook.svg" alt=""></a>
+            </div>
+    </footer>
+</body>
+<script src="./script/index.js"></script>
+</html>

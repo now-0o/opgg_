@@ -1,0 +1,32 @@
+@charset "utf-8";
+
+*{ 
+    margin:0; padding:0; 
+    box-sizing: border-box;
+}
+
+a:link,
+a:active,
+a:visited { text-decoration: none; color:inherit;  }
+a:hover{ color:inherit;}
+
+li{ list-style-type:none; }
+
+body{ color:#333; }
+
+.clearFix::after{ 
+content:''; display:block; clear:both;
+}
+
+.flex{
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
+
+.span{ display: block;
+    width:100%; height: 100%;
+    background-color: skyblue;
+}
+
+/* h1{ background-color: orange;} */

@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OP.GG 발로란트 전적 검색 서비스 - 전적, 프로필, 리더보드, 팁 &amp; 테크, 공지, 자유게시판</title>
+    <link rel="stylesheet" href="./style/reset.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="./images//valorant/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <style>
+        :root {
+            --bgc : #e84057;
+            --point : #28344e;
+            --hover : #2F436E;
+            --top_menu : #bec3cc;
+            --sub_menu : #adcbff;
+            --yellow : #FFB900;
+            --download : #202D37;
+            --dark : #1c1c1f;
+            --article-dark : #31313c;
+        }
+        body {
+            background-color: rgb(30, 27, 27);
+            font-family: 'Noto Sans KR', sans-serif;
+            background-image: url(./images/valorant/main_bg_pc.png);
+            background-size: 100%;
+            background-position: 0 70px;
+            background-repeat: no-repeat;
+        }
+        .logo {
+            display: flex;
+            background-color: var(--bgc);
+            height: 100%;
+            width: 75px;
+            justify-content: center;
+        }
+        .logo>h1 {
+            font-size: 0;
+        }
+        .logo img {
+            width: 50px;
+        }
+        .top-header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            background-color: var(--point);
+            color: var(--top_menu);
+        }
+        .top-header ul {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+        .top-header li {
+            display: flex;
+            align-items: center;
+            padding: 3px;
+            border-radius: 5px;
+        }
+        .top-header li:hover {
+            background-color: var(--hover);
+        }
+        .top-header a {
+            font-size: 10px;
+            text-decoration: none;
+        }
+        .top-header .lnb li a {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .top-header ul img{
+            width: 25px;
+        }
+        .left {
+            display: flex;
+            align-items: center;
+        }
+        .lnb ul li:nth-child(1) {
+            background-color: var(--bgc);
+            padding: 10px 5px 10px 0;
+            color: white;
+            border-radius: 0;
+        }
+        .lnb ul li:nth-child(1) span {
+            margin-left: 5px;
+        }
+        .gnb {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-right: 10px;
+        }
+        .lang span{
+            margin-right: 5px;
+        }
+        a.login {
+            color : white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            background-color: #5383e8;
+        }
+        .middle-header {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            background-color: var(--bgc);
+        }
+        .middle-content {
+            width: 980px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin: 0 auto;
+        }
+        .middle-content ul {
+            width: 100%;
+            display: flex;
+            gap: 20px;
+            color: white;
+            font-size: 14px;
+            align-items: center;
+            height: 100%;
+        }
+        .middle-content li {
+            height: 100%;
+            padding: 10px 0;
+        }
+        .middle-content li.active {
+            border-bottom: 3px solid white;
+            padding: 10px 0 7px;
+            color: white;
+        }
+        .middle-content li:hover {
+            border-bottom: 3px solid white;
+            padding: 10px 0 7px;
+            color: white;
+        }
+        .search-container {
+            width: 400px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: white;
+            border-radius: 3px;
+            padding: 5px 10px;
+            font-size: 12px;
+        }
+        .search-container input {
+            border: transparent;
+            outline: none;
+        }
+        .search-container input::placeholder {
+            font-size: 12px;
+        }
+        .search-container img {
+            width: 30px;
+            filter: invert(33%) sepia(48%) saturate(2851%) hue-rotate(329deg) brightness(96%) contrast(89%);
+        }
+        .section-contents {
+            width: 1000px;
+            height: 500px;
+            margin: 0 auto;
+        }
+        .main-contents {
+            display: flex;
+            flex-direction: column;
+            color: white;
+            gap: 10px;
+        }
+        .main-contents img {
+            width: 350px;
+            margin-top: 40px;
+        }
+        .main-contents h2 {
+            font-weight: 500;
+            font-size: 20px;
+        }
+        .main-contents span {
+            font-size: 12px;
+            color: #7B7A8E;
+        }
+        .main-contents a {
+            color: black;
+            background-color: white;
+            width: 60px;
+            height: 30px;
+            border-radius: 3px;
+            text-align: center;
+            font-size: 14px;
+            line-height: 28px;
+            margin: 10px 0 50px;
+        }
+        .searchBox {
+            width: 750px;
+            height: 50px;
+            background-color: white;
+            color: var(--point);
+            margin: 0 auto;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 7px;
+        }
+        .searchBox img {
+            width: 40px;
+        }
+        .searchBox>input {
+            outline: none;
+            border: transparent;
+            height: 35px;
+            margin-left: 5px;
+        }
+        .btnBox {
+            display: flex;
+            gap: 10px;
+        }
+        .opggBtn {
+            border: 1px solid #c5729f;
+            filter: invert(33%) sepia(48%) saturate(2851%) hue-rotate(329deg) brightness(96%) contrast(89%);
+            border-radius: 3px;
+            width: 65px;
+            height: 35px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .riotBtn {
+            width: 130px;
+            height: 35px;
+            font-size: 14px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #252423;
+            border-radius: 3px;
+        }
+        .riotBtn>img {
+            width: 30px;
+        }
+        .riotBtn>span {
+            color: white;
+        }
+        .footer-contents {
+            display: flex;
+            width: 1000px;
+            margin: 0 auto;
+            font-weight: 300;
+            padding-bottom: 30px;
+            border-bottom: 1px solid white;
+        }
+        .footer-contents>div {
+            flex: 1;
+            color: white;
+            font-size: 14px;
+        }
+        footer div img {
+            width: 100px;
+        }
+        footer span {
+            display: block;
+            margin-bottom: 20px;
+        }
+        .footerIcon {
+            width: 15px;
+            margin-left: 5px;
+        }
+        footer li {
+            margin-bottom: 5px;
+        }
+        .footer-bottom {
+            display: flex;
+            width: 1000px;
+            margin: 30px auto;
+            font-size: 12px;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-weight: 300;
+        }
+        .footer-bottom img {
+            width: 20px;
+        }
+        footer.active {
+            color: #9E9EB1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-header">
+            <div class="left">
+                <div class="logo">
+                    <h1>OPGG</h1>
+                    <img src="./images/opgglogo.svg" alt="">
+                </div>
+                <div class="lnb">
+                    <ul>
+                        <li>
+                            <img src="./images/img-navi-valorant-white.svg" alt="">
+                            <span>발로란트</span>
+                        </li>
+                        <li><a href="/index">
+                            <img src="./images/img-navi-lol-white.svg" alt="">
+                            <span>리그오브레전드</span>
+                        </a></li>
+                        <li><a href="#">
+                            <img src="./images/img-navi-pubg-gray.svg" alt="">
+                            <span>배틀크라운드</span>
+                        </a></li>
+                        <li><a href="#">
+                            <img src="./images/img-navi-overwatch-gray.svg" alt="">
+                            <span>오버워치</span>
+                        </a></li>
+                        <li><a href="#">
+                            <img src="./images/img_navi_bs.svg" alt="">
+                            <span>이터널 리턴</span>
+                        </a></li>
+                        <li><a href="#">
+                            <img src="./images/img_navi_esports.svg" alt="">
+                            <span>이스포츠</span>
+                        </a></li>
+                        <li><a href="#">
+                            <img src="./images/img-navi-talk-white.svg" alt="">
+                            <span>톡피지지</span>
+                        </a></li>
+                        <li><a href="/duo">
+                            <img src="./images/img-navi-duo-gray.svg" alt="">
+                            <span>Duo</span>
+                        </a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="gnb">
+                <img src="./images/icon-world-light-blue.svg" alt="">
+                <a href="#" class="lang"><span>한국어</span><i class='bx bx-caret-down'></i></a>
+                <a href="/login" class="login">로그인</a>
+            </div>
+        </div>
+        <div class="middle-header">
+            <div class="middle-content">
+                <ul>
+                    <li class="active"><a href="#">홈</a></li>
+                    <li><a href="#">랭킹</a></li>
+                </ul>
+                <div class="search-container">
+                    <input type="text" placeholder="플레이어 이름#태그">
+                    <a href="#"><img src="./images/icon-gg.svg" alt=""></a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section>
+        <div class="section-contents">
+            <div class="main-contents">
+                <img src="./images/valorant/valorant.png" alt="">
+                <h2>VALORANT PATCH NOTES</h2>
+                <span>발로란트 최근 게임 소식과 업데이트, 일부버그에<br>대한 뉴스를 확인하세요.</span>
+                <a href="#">더보기</a>
+            </div>
+            <div class="searchBox">
+                <input type="text" placeholder="플레이어 이름#태그">
+                <div class="btnBox">
+                    <a href="#" class="opggBtn"><img src="./images/icon-gg.svg" alt=""></a>
+                    <a href="#" class="riotBtn"><img src="./images/apple-touch-icon-precomposed-76x76.png" alt=""><span>라이엇 로그인</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+            <div class="footer-contents">
+                <div>
+                    <a href="#">
+                        <img src="./images/opgglogo.svg" alt="" class="footer-logo">
+                    </a>
+                </div>
+                <div><span>OP.GG</span>
+                    <ul>
+                        <li><a href="#">About OP.GG</a></li>
+                        <li><a href="#">Company</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">로고 히스토리</a></li>
+                    </ul>
+                </div>
+                <div><span>Products</span>
+                    <ul>
+                        <li><a href="#">리그오브레전드<img src="./images/icon-game-white.svg" alt="" class="footerIcon"></a></li>
+                        <li><a href="#">데스크톱<img src="./images/icon-game-white.svg" alt="" class="footerIcon"></a></li>
+                        <li><a href="#">발로란트<img src="./images/icon-game-white.svg" alt="" class="footerIcon"></a></li>
+                        <li><a href="#">배틀그라운드<img src="./images/icon-game-white.svg" alt="" class="footerIcon"></a></li>
+                        <li><a href="#">오버워치<img src="./images/icon-game-white.svg" alt="" class="footerIcon"></a></li>
+                        <li><a href="#">이터널 리턴<img src="./images/icon-game-white.svg" alt="" class="footerIcon"></a></li>
+                        <li><a href="#">이스포츠<img src="./images/icon-game-white.svg" alt="" class="footerIcon"></a></li>
+                        <li><a href="#">톡피지지<img src="./images/icon-game-white.svg" alt="" class="footerIcon"></a></li>
+                        <li><a href="#">Duo<img src="./images/icon-game-white.svg" alt="" class="footerIcon"></a></li>
+                    </ul>
+                </div>
+                <div><span>Apps</span>
+                    <ul>
+                        <li><a href="#">OP.GG Android App<img src="./images/icon-game-white.svg" alt="" class="footerIcon"></a></li>
+                        <li><a href="#">OP.GG iOS App<img src="./images/icon-game-white.svg" alt="" class="footerIcon"></a></li>
+                        <li><a href="#">IFI.GG Android App</a></li>
+                        <li><a href="#">IFI.GG iOS App</a></li>
+                    </ul>
+                </div>
+                <div><span>Resources</span>
+                    <ul>
+                        <li><a href="#">개인정보처리방침</a></li>
+                        <li><a href="#">이용약관</a></li>
+                        <li><a href="#">도움말</a></li>
+                        <li><a href="#">문의/피드백</a></li>
+                    </ul>
+                </div>
+                <div><span>More</span>
+                    <ul>
+                        <li><a href="#">제휴</a></li>
+                        <li><a href="#">광고</a></li>
+                        <li><a href="#">채용</a></li>
+                    </ul>
+                </div>
+                        </ul>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2012-2022 OP.GG. OP.GG isn’t endorsed by Riot Games and doesn’t reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.</p>
+                <a href="https://twitter.com/globalopgg/"><img src="./images/icon-logo-twitter.svg" alt=""></a>
+                <a href="https://www.instagram.com/opgginc/"><img src="./images/icon-logo-instagram.svg" alt=""></a>
+                <a href="https://www.facebook.com/lolopgg/"><img src="./images/icon-logo-facebook.svg" alt=""></a>
+            </div>
+    </footer>
+</body>
+</html>

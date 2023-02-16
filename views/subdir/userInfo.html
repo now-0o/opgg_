@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEMBER.OP.GG</title>
+    <link rel="stylesheet" href="/style/reset.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <style>
+        :root {
+            --bgc: #f3f5f7;
+            --facebook: #3c5a99;
+            --apple: #212529;
+            --line: #dddfe4;
+        }
+        body {
+            background-color: var(--bgc);
+            height: 100vh;
+            font-family: 'Noto Sans KR', sans-serif;
+            position: relative;
+        }
+        section {
+            width: 600px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .section {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .login-container {
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 40px;
+        }
+        .logo img {
+            width: 200px;
+            margin: 50px 0 30px;
+        }
+        .pagenation {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+        .pagenation span {
+            width: 10px;
+            height: 10px;
+            border-radius: 10px;
+            background-color: var(--line);
+            display: block;
+        }
+        .pagenation span.active {
+            background-color: #1ea1f7;
+        }
+
+        .userInfo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin: 50px 0;
+            width: 100%;
+            padding: 0 30px;
+            gap: 30px;
+        }
+        .userInfo h3 {
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        .userInfo>div {
+            width: 100%;
+        }
+        .userInfo input {
+            border: transparent;
+            border-bottom: 1px solid #dddfe4;
+            outline: none;
+            font-size: 18px;
+            width: 100%;
+            padding: 3px;
+        }
+        .userInfo input::placeholder {
+            color: #b4b4b4;
+        }
+        .userInfo label {
+            color: #b4b4b4;
+            font-size: 14px;
+        }
+        .emailP, .nicknameP {
+            display: none;
+            gap: 5px;
+            align-items: center;
+            color: #fe453b;
+            margin-top: 5px;
+        }
+        .pwdCon {
+            display: none;
+        }
+        .pwdCon span {
+            color: #fe453b;
+            display: block;
+            font-size: 14px;
+            margin: 0 0 5px 25px;
+        }
+        .pwdP {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+            color: #4e4e4e;
+            margin: 5px 0;
+        }
+        .emailP::before, .nicknameP::before  {
+            display: inline-block;
+            content: '';
+            width: 15px;
+            height: 15px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 15px;
+            background-image: url(/images/icon_alert.953d9b77.svg);
+        }
+        .pwdP::before {
+            display: inline-block;
+            content: '';
+            width: 20px;
+            height: 20px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 20px;
+            background-image: url(/images/icon_password.28323bea.svg);
+        }
+
+        .btnBox {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+            width: 90%;
+        }
+        .next, .notAgree {
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 3px;
+            flex: 1;
+            cursor: default;
+        }
+        .notAgree {
+            border: 1px solid #dddfe4;
+            background-color: white;
+            color: black;
+        }
+        .next {
+            background-color: #dddfe4;
+            color: white;
+            font-weight: 600;
+        }
+        .next.active {
+            background-color: #1ea1f7;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="section">
+            <div class="login-container">
+                <div class="logo">
+                    <a href="./index.html">
+                        <img src="/images/img_opgglogo.1924961d.svg" alt="">
+                    </a>
+                </div>
+                <div class="pagenation">
+                    <span></span>
+                    <span></span>
+                    <span class="active"></span>
+                    <span></span>
+                </div>
+                <div class="userInfo">
+                    <h3>기본정보입력</h3>
+                    <div class="email">
+                        <input type="email" id="userEmail" placeholder="이메일 주소">
+                        <p class="emailP"></p>
+                    </div>
+                    <div class="nickname">
+                        <input type="text" id="nickname" placeholder="닉네임">
+                        <p class="nicknameP"></p>
+                        <label for="nickname">개인정보를 기입하여 발생될 수 있는 피해는 OP.GG가 일절 책임지지 않습니다.</label>
+                    </div>
+                    <div class="password">
+                        <input type="password" id="userPwd" placeholder="비밀번호">
+                        <div class="pwdCon">
+                            <p class="pwdP">비밀번호 요구사항</p>
+                            <span>영문, 숫자, 기호의 조합</span>
+                            <span>비밀번호 길이는 최소 8자 이상</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="btnBox">
+                    <div class="notAgree">취소</div>
+                    <div class="next">가입하기</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="/script/userInfo.js"></script>
+</body>
+</html>

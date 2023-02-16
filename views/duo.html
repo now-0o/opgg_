@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>듀오 찾기 - DUO.OP.GG</title>
+    <link rel="stylesheet" href="./style/reset.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="/images/duo/favicon-32x32.png rel="shortcut icon" type="image/x-icon">
+    <style>
+        :root {
+            --bgc : #282830;
+            --top : #26344e;
+            --point : #424254;
+            --hover : #2F436E;
+            --top_menu : #bec3cc;
+            --sub_menu : #adcbff;
+            --redpoint : #e84057;
+            --yellow : #FFB900;
+            --select : #02bba3;
+            --main : #31313c;
+        }
+        body {
+            background-color: rgb(30, 27, 27);
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        body.active {
+            overflow: hidden;
+        }
+        .logo {
+            display: flex;
+            background-color: var(--bgc);
+            height: 100%;
+            width: 75px;
+            justify-content: center;
+        }
+        .logo>h1 {
+            font-size: 0;
+        }
+        .logo img {
+            width: 50px;
+        }
+        .top-header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            background-color: var(--top);
+            color: var(--top_menu);
+        }
+        .top-header ul {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+        .top-header li {
+            display: flex;
+            align-items: center;
+            padding: 3px;
+            border-radius: 5px;
+        }
+        .top-header li:hover {
+            background-color: var(--hover);
+        }
+        .top-header a {
+            font-size: 10px;
+            text-decoration: none;
+        }
+        .top-header .lnb li a {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .top-header ul img{
+            width: 25px;
+        }
+        .left {
+            display: flex;
+            align-items: center;
+        }
+        .lnb ul li:nth-child(1) {
+            background-color: var(--bgc);
+            padding: 10px 5px 10px 0;
+            color: white;
+            border-radius: 0;
+        }
+        .lnb ul li:nth-child(1) span {
+            margin-left: 5px;
+        }
+        .gnb {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-right: 10px;
+        }
+        .lang span{
+            margin-right: 5px;
+        }
+        a.login {
+            color : white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            background-color: #5383e8;
+        }
+        .sub-top-header {
+            background-color: var(--bgc);
+            border-bottom: 1px solid black;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .sub-top-content {
+            width: 980px;
+            display: flex;
+            justify-content: flex-start;
+        }
+        .sub-top-content ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 60px;
+            gap: 15px;
+        }
+        .sub-top-content li:first-child {
+            margin-right: 10px;
+        }
+        .sub-top-content ul>li>a {
+            display: flex;
+            align-items: center;
+            color: white;
+            font-size: 12px;
+            gap: 5px;
+        }
+        .sub-top-content li+li>a>img {
+            width: 25px;
+        }
+        .sub-top-content li:last-child {
+            opacity: .4;
+            transition-duration: .2s;
+        }
+        .sub-top-content li:last-child:hover {
+            opacity: 1;
+        }
+        .middle-header {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            background-color: var(--bgc);
+        }
+        .middle-content {
+            width: 980px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin: 0 auto;
+        }
+        .middle-content ul {
+            width: 100%;
+            display: flex;
+            gap: 20px;
+            color: white;
+            font-size: 14px;
+            align-items: center;
+            height: 100%;
+        }
+        .middle-content li {
+            height: 100%;
+            padding: 10px 0;
+        }
+        .middle-content li.active {
+            border-bottom: 3px solid white;
+            padding: 10px 0 7px;
+            color: white;
+        }
+        .middle-content li:hover {
+            border-bottom: 3px solid white;
+            padding: 10px 0 7px;
+            color: white;
+        }
+        .notice-container {
+            font-size: 12px;
+            width: 400px;
+            border-radius: 30px;
+            background-color: var(--point);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 30px;
+        }
+        .notice-container p {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .notice-container img {
+            margin-right: 5px;
+        }
+        .notice-container span {
+            color: var(--redpoint);
+        }
+        .bottom-header {
+            width: 100%;
+            display: flex;
+            background-color: var(--yellow);
+        }
+        .bottom-content {
+            width: 980px;
+            display: flex;
+            justify-content: start;
+            margin: 0 auto;
+        }
+        .bottom-header p {
+            width: 100%;
+            padding: 10px 0;
+            font-size: 14px;
+            margin-right: 40px;
+        }
+        .section-contents {
+            width: 1000px;
+            margin: 0 auto;
+        }
+        .main-contents {
+            display: flex;
+            flex-direction: column;
+            color: white;
+            gap: 10px;
+        }
+
+
+
+        .top-input {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+        }
+        .startBox {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .endBox {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .endBox button {
+            height: 40px;
+            background-color: var(--select);
+            font-size: 12px;
+            padding: 5px 15px;
+            display: flex;
+            align-items: center;
+            border-radius: 3px;
+            border: transparent;
+            color: white;
+        }
+        .endBox button:hover {
+            background-color: #0bcab0;
+            cursor: pointer;
+        }
+        .lane-box ul {
+            display: flex;
+            position: relative;
+            z-index: -1;
+        }
+        .lane-box li {
+            background-color: var(--main);
+        }
+        .lane-box li:first-child::after {
+            display: none;
+        }
+        .lane-box li::after {
+            content: '';
+            display: block;
+            width: 1px;
+            height: 100%;
+            background-color: #545467;
+            position: absolute;
+            top: 0;
+        }
+        .lane-box li:first-child {
+            border-radius: 3px 0 0 3px;
+        }
+        .lane-box li:last-child {
+            border-radius: 0 3px 3px 0;
+        }
+        .laneBtn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            height: 40px;
+        }
+        .laneBtn img {
+            width: 25px;
+            margin: 7px;
+        }
+        .laneBtn:hover {
+            background-color: #40404e;
+        }
+        .laneBtn.active {
+            background-color: var(--select);
+        }
+        .laneBtn:first-child.active {
+            border-radius: 3px 0 0 3px;
+        }
+        .selectOption {
+            display: flex;
+            gap: 10px;
+        }
+        select {
+            padding: 5px;
+            background-color: var(--main);
+            border: transparent;
+            color: white;
+            height: 40px;
+            border-radius: 3px;
+        }
+        .board-header {
+            display: flex;
+            background-color: var(--bgc);
+            font-size: 12px;
+            justify-content: space-around;
+            align-items: center;
+            padding:12px 10px;
+            color: rgb(213, 213, 213);
+            border-radius: 3px 3px 0 0;
+        }
+        .board-content {
+            width: 100%;
+            height: 500px;
+            background-color: var(--main);
+        }
+
+
+        .footer-contents {
+            display: flex;
+            width: 1000px;
+            margin: 0 auto;
+            font-weight: 300;
+            padding-bottom: 30px;
+            border-bottom: 1px solid white;
+        }
+        .footer-contents>div {
+            flex: 1;
+            color: white;
+            font-size: 14px;
+        }
+        footer div img {
+            width: 100px;
+        }
+        footer span {
+            display: block;
+            margin-bottom: 20px;
+        }
+        .footerIcon {
+            width: 15px;
+            margin-left: 5px;
+        }
+        footer li {
+            margin-bottom: 5px;
+        }
+        .footer-bottom {
+            display: flex;
+            width: 1000px;
+            margin: 30px auto;
+            font-size: 12px;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-weight: 300;
+        }
+        .footer-bottom img {
+            width: 20px;
+        }
+        footer.active {
+            color: #9E9EB1;
+        }
+
+        /* 소환사 등록 */
+        .summoner {
+            width: 510px;
+            padding: 10px 10px;
+            border-radius: 5px;
+            background-color: var(--main);
+            color: white;
+            position: fixed;
+            left: 35%;
+            top: 150px;
+            font-size: 12px;
+            z-index: 99;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.339);
+            display: none;
+        }
+        .summoner.active {
+            display: block;
+        }
+        .summoner p {
+            padding: 0 0 3px 0;
+        }
+        .sum-content1 {
+            display: flex;
+            padding: 5px 0;
+            justify-content: space-between;
+            font-size: 14px;
+            position: relative;
+        }
+        .sum-content1::after {
+            content: '';
+            display: block;
+            position: absolute;
+            left: -10px;
+            top: 38px;
+            width: 510px;
+            height: 1px;
+            background-color: black;
+        }
+        .sum-content2 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+        }
+        .sum-content2 input {
+            outline: none;
+            border: 1px solid var(--point);
+            background-color: var(--bgc);
+            height: 40px;
+            border-radius: 3px;
+            color: white;
+        }
+        .sum-name {
+            width: 35%;
+        }
+        .sum-cer {
+            width: 70%;
+        }
+        .cer-content {
+            border: 1px solid var(--point);
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            border-radius: 3px;
+        }
+        .sum-content3 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .sum-game {
+            width: 35;
+        }
+        .sum-mic {
+            width: 15%;
+        }
+        .sum-mic input {
+            height: 40px;
+        }
+        .sum-content3 select {
+            border: 1px solid var(--point);
+        }
+        .sum-content4 {
+            display: flex;
+            padding: 10px 0;
+        }
+        .sum-memo input {
+            width: 470px;
+            height: 40px;
+            background-color: var(--bgc);
+            outline: none;
+            border: 1px solid var(--point);
+            border-radius: 3px; 
+            padding-left: 5px;
+            color: white;
+        }
+        .sum-content input {
+            background-color: var(--bgc);
+            outline: none;
+            border: 1px solid var(--point);
+            border-radius: 3px;
+            height: 40px;
+            width: 160px;
+            padding-left: 5px;
+            color: white;
+        }
+        .sum-content5 {
+            display: flex;
+            flex-direction: column;
+            padding: 10px 0;
+        }
+        .sum-content5 p {
+            color: var(--redpoint);
+            font-size: 11px;
+        }
+        .sum-content5 img {
+            width: 11px;
+            margin-right: 5px;
+        }
+        .sum-btn {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .sum-btn a {
+            width: 49%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .sum-btn a:first-child {
+            border: 1px solid var(--point);
+            height: 40px;
+            border-radius: 3px;
+        }
+        .sum-btn a:last-child {
+            height: 40px;
+            background-color: #0bcab0;
+            border-radius: 3px;
+        }
+        .sum-lane-box ul {
+            display: flex;
+            position: relative;
+            border: 1px solid var(--point);
+        }
+        .sum-lane-box li {
+            background-color: var(--main);
+        }
+        .sum-lane-box li:first-child::after {
+            display: none;
+        }
+        .sum-lane-box li::after {
+            content: '';
+            display: block;
+            width: 1px;
+            height: 100%;
+            background-color: #545467;
+            position: absolute;
+            top: 0;
+        }
+        .sum-lane-box li:first-child {
+            border-radius: 3px 0 0 3px;
+        }
+        .sum-lane-box li:last-child {
+            border-radius: 0 3px 3px 0;
+        }
+        .sum-laneBtn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            height: 40px;
+        }
+        .sum-laneBtn img {
+            width: 25px;
+            margin: 7px;
+        }
+        .sum-laneBtn:hover {
+            background-color: #40404e;
+        }
+        .background {
+            width: 100%;
+            height: 100vw;
+            background-color: rgba(0, 0, 0, 0.495);
+            display: none;
+            position: fixed;
+        }
+        .background.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <div class="modal-container">
+        <div class="summoner">
+            <div class="sum-content1">
+                <span>소환사 등록하기</span>
+                <a href="#" class="sum-off"><img src="/images/duo/cross.svg" alt=""></a>
+            </div>
+            <div class="sum-content2">
+                <div class="sum-name">
+                    <p>소환사 이름 (KR)</p>
+                    <input type="text">
+                </div>
+                <div class="sum-cer">
+                    <p>인증된 소환사</p>
+                    <div class="cer-content">
+                        <span>인증된 소환사 없음</span>
+                        <a href="#">소환사 인증하기</a>
+                    </div>
+                </div>
+            </div>
+            <div class="sum-content3">
+                <div class="sum-po">
+                    <p>주 포지션</p>
+                    <div class="sum-lane-box">
+                        <ul>
+                            <li><a href="#" class="sum-laneBtn">
+                                <img src="/images/duo/all.png" alt="">
+                            </a></li>
+                            <li><a href="#" class="sum-laneBtn">
+                                <img src="/images/duo/top.svg" alt="">
+                            </a></li>
+                            <li><a href="#" class="sum-laneBtn">
+                                <img src="/images/duo/jg.svg" alt="">
+                            </a></li>
+                            <li><a href="#" class="sum-laneBtn">
+                                <img src="/images/duo/mid.svg" alt="">
+                            </a></li>
+                            <li><a href="#" class="sum-laneBtn">
+                                <img src="/images/duo/bot.png" alt="">
+                            </a></li>
+                            <li><a href="#" class="sum-laneBtn">
+                                <img src="/images/duo/sup.svg" alt="">
+                            </a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sum-game">
+                    <p>큐 타입</p>
+                    <select name="gameType" id="gameType">
+                        <option value="solo">솔로랭크</option>
+                        <option value="team">자유랭크</option>
+                        <option value="normal">일반(비공개 선택)</option>
+                        <option value="aram">무작위 총력전</option>
+                    </select>
+                </div>
+                <div class="sum-mic">
+                    <p>마이크</p>
+                    <input type="checkbox">
+                </div>
+            </div>
+            <div class="sum-content4">
+                <div class="sum-memo">
+                    <p>메모</p>
+                    <input type="text" placeholder="서포터 구합니다. 같이 게임해요!">
+                </div>
+            </div>
+            <div class="sum-content">
+                <p>삭제 비밀번호</p>
+                <input type="text" placeholder="4자리 숫자로 입력해주세요.">
+            </div>
+            <div class="sum-content5">
+                <p><img src="/images/duo/info.svg" alt="">타인에 대한 모욕, 명예훼손, 성희롱 등의 행위는 상대방의 신고 시 법적 처벌을 받을 수 있습니다.</p>
+                <div class="sum-btn">
+                    <a href="#" class="sum-off">취소</a>
+                    <a href="#">등록</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <header>
+        <div class="top-header">
+            <div class="left">
+                <div class="logo">
+                    <h1>OPGG</h1>
+                    <img src="/images/opgglogo.svg" alt="">
+                </div>
+                <div class="lnb">
+                    <ul>
+                        <li>
+                            <img src="/images/img-navi-duo-gray.svg" alt="">
+                            <span>Duo</span>
+                        </li>
+                        <li><a href="/index">
+                            <img src="/images/img-navi-lol-white.svg" alt="">
+                            <span>리그오브레전드</span>
+                        </a></li>
+                        <li><a href="/valorant">
+                            <img src="/images/img-navi-valorant-white.svg" alt="">
+                            <span>발로란트</span>
+                        </a></li>
+                        <li><a href="#">
+                            <img src="/images/img-navi-pubg-gray.svg" alt="">
+                            <span>배틀크라운드</span>
+                        </a></li>
+                        <li><a href="#">
+                            <img src="/images/img-navi-overwatch-gray.svg" alt="">
+                            <span>오버워치</span>
+                        </a></li>
+                        <li><a href="#">
+                            <img src="/images/img_navi_bs.svg" alt="">
+                            <span>이터널 리턴</span>
+                        </a></li>
+                        <li><a href="#">
+                            <img src="/images/img_navi_esports.svg" alt="">
+                            <span>이스포츠</span>
+                        </a></li>
+                        <li><a href="#">
+                            <img src="/images/img-navi-talk-white.svg" alt="">
+                            <span>톡피지지</span>
+                        </a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="gnb">
+                <img src="/images/icon-world-light-blue.svg" alt="">
+                <a href="#" class="lang"><span>한국어</span><i class='bx bx-caret-down'></i></a>
+                <a href="/login" class="login">로그인</a>
+            </div>
+        </div>
+        <div class="sub-top-header">
+            <div class="sub-top-content">
+                <ul>
+                    <li><a href="./duo.html"><img src="/images/duo/duo.svg" alt=""></a></li>
+                    <li><a href="#"><img src="/images/duo/game-icon-lol.png" alt=""><span>League of Legends</span></a></li>
+                    <li><a href="#"><img src="/images/duo/game-icon-valorant.png" alt=""><span>Valorant</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="middle-header">
+            <div class="middle-content">
+                <ul>
+                    <li class="active"><a href="#">듀오찾기</a></li>
+                    <li><a href="#">트롤신고</a></li>
+                    <li><a href="#">클랜찾기</a></li>
+                </ul>
+                <div class="notice-container">
+                    <p><img src="/images/duo/notification.svg" alt=""><span> 대리 광고</span>&nbsp;시&nbsp;<span>업무방해죄</span>로 신고될 수 있습니다.</p>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-header">
+            <div class="bottom-content">
+                    <p>소환사 등록은 로그인 시 10분에 1회 등록 가능합니다.</p>
+            </div>
+        </div>
+    </header>
+    <section>
+        <div class="section-contents">
+            <div class="main-contents">
+                <div class="top-input">
+                    <div class="startBox">
+                        <div class="lane-box">
+                            <ul>
+                                <li><a href="#" class="laneBtn active">
+                                    <img src="/images/duo/all.png" alt="">
+                                </a></li>
+                                <li><a href="#" class="laneBtn">
+                                    <img src="/images/duo/top.svg" alt="">
+                                </a></li>
+                                <li><a href="#" class="laneBtn">
+                                    <img src="/images/duo/jg.svg" alt="">
+                                </a></li>
+                                <li><a href="#" class="laneBtn">
+                                    <img src="/images/duo/mid.svg" alt="">
+                                </a></li>
+                                <li><a href="#" class="laneBtn">
+                                    <img src="/images/duo/bot.png" alt="">
+                                </a></li>
+                                <li><a href="#" class="laneBtn">
+                                    <img src="/images/duo/sup.svg" alt="">
+                                </a></li>
+                            </ul>
+                        </div>
+                        <div class="selectOption">
+                            <select name="gameType" id="gameType">
+                                <option value="solo">솔로랭크</option>
+                                <option value="team">자유랭크</option>
+                                <option value="normal">일반(비공개 선택)</option>
+                                <option value="aram">무작위 총력전</option>
+                            </select>
+                            <select name="tier" id="tier">
+                                <option value="all">전체</option>
+                                <option value="unranked">언랭크</option>
+                                <option value="iron">아이언</option>
+                                <option value="bronze">브론즈</option>
+                                <option value="silver">실버</option>
+                                <option value="gold">골드</option>
+                                <option value="platinum">플레티넘</option>
+                                <option value="diamond">다이아</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="endBox">
+                        <select name="sever" id="server">
+                            <option value="KR">KR</option>
+                            <option value="KR">NA</option>
+                            <option value="KR">JP</option>
+                            <option value="KR">EUW</option>
+                        </select>
+                        <button class="sum-on">소환사 등록하기</button>
+                    </div>
+                </div>
+                <div class="board">
+                    <div class="board-header">
+                        <div class="head-content">소환사 이름</div>
+                        <div class="head-content">주 포지션</div>
+                        <div class="head-content">티어</div>
+                        <div class="head-content">최근 선호 챔피언</div>
+                        <div class="head-content">승률</div>
+                        <div class="head-content">KDA</div>
+                        <div class="head-content">메모</div>
+                        <div class="head-content">등록일시</div>
+                    </div>
+                    <div class="board-content"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+            <div class="footer-contents">
+                <div>
+                    <a href="#">
+                        <img src="/images/opgglogo.svg" alt="" class="footer-logo">
+                    </a>
+                </div>
+                <div><span>OP.GG</span>
+                    <ul>
+                        <li><a href="#">About OP.GG</a></li>
+                        <li><a href="#">Company</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">로고 히스토리</a></li>
+                    </ul>
+                </div>
+                <div><span>Products</span>
+                    <ul>
+                        <li><a href="#">리그오브레전드<img src="/images/icon-game-white.svg" alt="" class="footerIcon"></a></li>
+                        <li><a href="#">데스크톱<img src="/images/icon-game-white.svg" alt="" class="footerIcon"></a></li>
+                        <li><a href="#">발로란트<img src="/images/icon-game-white.svg" alt="" class="footerIcon"></a></li>
+                        <li><a href="#">배틀그라운드<img src="/images/icon-game-white.svg" alt="" class="footerIcon"></a></li>
+                        <li><a href="#">오버워치<img src="/images/icon-game-white.svg" alt="" class="footerIcon"></a></li>
+                        <li><a href="#">이터널 리턴<img src="/images/icon-game-white.svg" alt="" class="footerIcon"></a></li>
+                        <li><a href="#">이스포츠<img src="/images/icon-game-white.svg" alt="" class="footerIcon"></a></li>
+                        <li><a href="#">톡피지지<img src="/images/icon-game-white.svg" alt="" class="footerIcon"></a></li>
+                        <li><a href="#">Duo<img src="/images/icon-game-white.svg" alt="" class="footerIcon"></a></li>
+                    </ul>
+                </div>
+                <div><span>Apps</span>
+                    <ul>
+                        <li><a href="#">OP.GG Android App<img src="/images/icon-game-white.svg" alt="" class="footerIcon"></a></li>
+                        <li><a href="#">OP.GG iOS App<img src="/images/icon-game-white.svg" alt="" class="footerIcon"></a></li>
+                        <li><a href="#">IFI.GG Android App</a></li>
+                        <li><a href="#">IFI.GG iOS App</a></li>
+                    </ul>
+                </div>
+                <div><span>Resources</span>
+                    <ul>
+                        <li><a href="#">개인정보처리방침</a></li>
+                        <li><a href="#">이용약관</a></li>
+                        <li><a href="#">도움말</a></li>
+                        <li><a href="#">문의/피드백</a></li>
+                    </ul>
+                </div>
+                <div><span>More</span>
+                    <ul>
+                        <li><a href="#">제휴</a></li>
+                        <li><a href="#">광고</a></li>
+                        <li><a href="#">채용</a></li>
+                    </ul>
+                </div>
+                        </ul>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2012-2022 OP.GG. OP.GG isn’t endorsed by Riot Games and doesn’t reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.</p>
+                <a href="https://twitter.com/globalopgg/"><img src="./images/icon-logo-twitter.svg" alt=""></a>
+                <a href="https://www.instagram.com/opgginc/"><img src="./images/icon-logo-instagram.svg" alt=""></a>
+                <a href="https://www.facebook.com/lolopgg/"><img src="./images/icon-logo-facebook.svg" alt=""></a>
+            </div>
+    </footer>
+    <script src="/script/duo.js"></script>
+</body>
+</html>
