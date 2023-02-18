@@ -38,6 +38,6 @@ userInfoAgree.addEventListener('change',()=>{
 
 nextBtn.addEventListener('click',()=>{
     if(nextBtn.classList.contains('active')){
-        location.href = '/login/register3';
+        location.href = '/login/register/userInfo';
     }
 })

@@ -1,7 +1,7 @@
 const topCon = document.querySelector('.top-container');
 const tierCon = document.querySelector('.tier-container');
 const macthCon = document.querySelector('.match-container');
-const token = 'RGAPI-98d55c3a-9912-4fe1-a8e2-1312641ce70a'
+const token = 'RGAPI-46f5d0bc-1923-4aa1-976d-eb01632067ab'
 const url = `https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/${document.cookie.split('=')[1]}?api_key=${token}`
 fetch(url)
     .then(res => res.json())

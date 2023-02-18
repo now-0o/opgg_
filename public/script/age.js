@@ -36,13 +36,13 @@ nextBtn.addEventListener('click',()=>{
                 if(parseInt(birth.slice(6,8)) > day) {
                     alert('OP.GG 회원 서비스는 만 14세 이상만 이용하실 수 있습니다.')
                 }else {
-                    location.href = '/login/register2'
+                    location.href = '/login/register/agree'
                 }
             }else {
-                location.href = '/login/register2'
+                location.href = '/login/register/agree'
             }
         }else {
-            location.href = '/login/register2'
+            location.href = '/login/register/agree'
         }
     }
 })

@@ -81,6 +81,7 @@ body.active {
     align-items: center;
     gap: 10px;
     margin-right: 10px;
+    position: relative;
 }
 .lightBtn:hover {
     cursor: pointer;
@@ -93,6 +94,34 @@ a.login {
     padding: 5px 10px;
     border-radius: 5px;
     background-color: var(--bgc);
+}
+.loginBox {
+    display: none;
+    margin: 0 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+.nickname {
+    color: white;
+}
+.logoutBox {
+    display: none;
+    position: absolute;
+    bottom: -25px;
+    right: 0;
+    background-color: white;
+    color: black;
+    padding: 5px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.logoutBox.active {
+    display: block;
+}
+.logoutBox:hover {
+    background-color: #efefef;
 }
 .middle-header {
     width: 100%;

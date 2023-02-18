@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const fs = require('fs');
+let userInfo = {};
 
 const root = require('./routes/root')
 const login = require('./routes/login')

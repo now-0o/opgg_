@@ -145,16 +145,25 @@
             gap: 10px;
             width: 100%;
         }
-        .content5>a {
-            display: block;
+        .loginBtn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 500;
+            cursor: default;
             background-color: #dddfe4;
             color: white;
             width: 100%;
             text-align: center;
             line-height: 50px;
             height: 50px;
+            border-radius: 3px;
         }
-        .content5 div {
+        .loginBtn.active {
+            background-color: #1ea1f7;
+            cursor: pointer;
+        }
+        .content5 div:nth-of-type(2) {
             display: flex;
             gap: 10px;
             font-size: 16px;
@@ -195,8 +204,8 @@
                     </div> -->
                     <div class="content4">
                         <p>이메일 로그인</p>
-                        <input type="text" placeholder="이메일 주소">
-                        <input type="text" placeholder="비밀번호">
+                        <input type="text" placeholder="이메일 주소" class="email">
+                        <input type="password" placeholder="비밀번호" class="pwd">
                         <div class="check">
                             <div class="checkBox">
                                 <input type="checkbox" id="check">
@@ -206,10 +215,10 @@
                         </div>
                     </div>
                     <div class="content5">
-                        <a href="#">로그인</a>
+                        <div class="loginBtn">로그인</div>
                         <div>
                             <span>OP.GG에 처음이세요?</span>
-                            <a href="/login/register" class="login-a">회원가입하기</a>
+                            <a href="/login/register/age" class="login-a">회원가입하기</a>
                         </div>
                     </div>
                 </div>
@@ -219,5 +228,6 @@
             </a>
         </div>
     </section>
+    <script src="/script/login.js"></script>
 </body>
 </html>

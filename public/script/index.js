@@ -6,8 +6,29 @@ const adBox = document.querySelector('.adBox');
 const boardBox = document.querySelector('.boardBox');
 const boardCon = document.querySelectorAll('.board-content');
 const footerLogo = document.querySelector('.footer-logo');
+const login = document.querySelector('.login');
+const loginBox = document.querySelector('.loginBox');
+const logoutBox = document.querySelector('.logoutBox');
 
 let imgCount = true;
+let nickname = undefined;
+window.onload = function(){
+    const allCookies = document.cookie.split(';');
+    allCookies.forEach(cookie=>{
+        if(cookie.includes('nickname')){
+            nickname = cookie.split('=')[1];
+        }
+    })
+    console.log(nickname)
+    if(!nickname){
+        login.style.display = 'block'
+        loginBox.style.display = 'none'
+    }else {
+        login.style.display = 'none'
+        loginBox.style.display = 'flex'
+        loginBox.childNodes[1].innerHTML = nickname;
+    }
+}
 
 lightBtn.addEventListener('click',function(){
     body.classList.toggle('active');
@@ -65,4 +86,16 @@ mainSearch.addEventListener('keydown',function(e){
         setCookieHandle(`${mainSearch.value}`);
         location.href = `/summoners`;
     }
+})
+
+loginBox.addEventListener('click',()=>{
+    logoutBox.classList.toggle('active')
+})
+
+function deleteCookie(name) {
+    document.cookie = name + '=; expires=Thu, 01 Jan 1999 00:00:10 GMT;';
+}
+logoutBox.addEventListener('click',()=>{
+    deleteCookie('nickname')
+    location.reload();
 })
