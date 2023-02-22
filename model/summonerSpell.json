@@ -1,0 +1,35 @@
+[
+    {
+        "id" : "SummonerFlash" , "key" : "4"
+    },
+    {
+        "id" : "SummonerTeleport" , "key" : "12"
+    },
+    {
+        "id" : "SummonerDot" , "key" : "14"
+    },
+    {
+        "id" : "SummonerSnowball" , "key" : "32"
+    },
+    {
+        "id" : "SummonerBoost" , "key" : "1"
+    },
+    {
+        "id" : "SummonerExhaust" , "key" : "3"
+    },
+    {
+        "id" : "SummonerHaste" , "key" : "6"
+    },
+    {
+        "id" : "SummonerHeal" , "key" : "7"
+    },
+    {
+        "id" : "SummonerMana" , "key" : "13"
+    },
+    {
+        "id" : "SummonerSmite" , "key" : "11"
+    },
+    {
+        "id" : "SummonerBarrier" , "key" : "21"
+    }
+]

@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="./images/favicon.ico" rel="shortcut icon" type="image/x-icon">
-    <link rel="stylesheet" href="/style/index.css">
     <link rel="stylesheet" href="/style/summoners.css">
     <style>
         :root {
@@ -354,6 +353,10 @@
                     <li><a href="#">멀티서치</a></li>
                     <li><a href="#">커뮤니티</a></li>
                 </ul>
+                <div class="topSearch-container">
+                        <input type="text" id="topSearch" autocomplete="off">
+                        <img src="/images/icon-gg.svg" alt="">
+                </div>
             </div>
         </div>
         <div class="bottom-header">
@@ -370,7 +373,7 @@
         </div>
         <div class="bottom-container">
             <div class="tier-container"></div>
-            <div class="match-container"></div>
+            <ul class="match-container"></ul>
         </div>
     </section>
     <footer>

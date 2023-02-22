@@ -12,6 +12,27 @@ let emailToken = false;
 let nicknameToken = false;
 let pwdToken = false;
 
+const url = 'http://localhost:3000/login/register/userInfo';
+
+let userAry;
+
+window.onload = function(){
+    const userInfo =  {
+        email : userEmail.value,
+        nickname : nickname.value,
+        pwd : userPwd.value
+    }
+    fetch(url, {
+        method: 'POST', 
+        body:JSON.stringify(userInfo),
+        headers : {'Content-Type':'application/json;charset=utf-8'}
+    })
+    .then(res=>res.json())
+    .then(res=>{
+        userAry = res.message
+    })
+}
+
 userEmail.addEventListener('keyup',function(){
     if(this.value.length > 0 &&!(emailRegex).test(this.value)){
         userEmailP.style.display = 'flex';
@@ -21,6 +42,14 @@ userEmail.addEventListener('keyup',function(){
     }else {
         userEmailP.style.display = 'none';
         emailToken = true;
+        nextHandle();
+    }
+})
+userEmail.addEventListener('blur',function(){
+    if(userAry.find(user=> user.email == this.value)){
+        userEmailP.style.display = 'flex';
+        userEmailP.innerHTML = '이미 사용중이거나 탈퇴한 이메일 ID 입니다.';
+        emailToken = false;
         nextHandle();
     }
 })
@@ -34,6 +63,14 @@ nickname.addEventListener('keyup',function(){
     }else {
         nicknameP.style.display = 'none';
         nicknameToken = true;
+        nextHandle();
+    }
+})
+nickname.addEventListener('blur',function(){
+    if(userAry.find(user=> user.nickname == this.value)){
+        nicknameP.style.display = 'flex';
+        nicknameP.innerHTML = '이미 사용중인 닉네임입니다.';
+        nicknameToken = false;
         nextHandle();
     }
 })
@@ -57,7 +94,6 @@ nextBtn.addEventListener('click',()=>{
             nickname : nickname.value,
             pwd : userPwd.value
         }
-        const url = 'http://localhost:3000/login/register/userInfo';
         fetch(url, {
             method: 'POST', 
             body:JSON.stringify(userInfo),

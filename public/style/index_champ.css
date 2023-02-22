@@ -106,7 +106,7 @@ a.login {
 .middle-content {
     width: 980px;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-evenly;
     align-items: center;
     margin: 0 auto;
 }
@@ -135,6 +135,22 @@ a.login {
     border-bottom: 3px solid white;
     padding: 10px 0 7px;
     color: white;
+}
+.topSearch-container {
+    width: 200px;
+    display: flex;
+    align-items: c;
+    background-color: white;
+    padding: 5px 5px;
+    border-radius: 3px;
+}
+#topSearch {
+    height: 20px;
+    border: transparent;
+    outline: none;
+}
+.topSearch-container img {
+    width: 30px;
 }
 .bottom-header {
     width: 100%;

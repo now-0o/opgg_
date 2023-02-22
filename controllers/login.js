@@ -31,11 +31,15 @@ const registerInfo = (req,res)=>{
 const registerInfoPost = (req,res)=>{
     const dataBuffer = fs.readFileSync(path.join(__dirname, '..', 'model', 'user.json'));
     let userAry = JSON.parse(dataBuffer.toString());
-    userInfo = req.body;
-    userAry.push(userInfo);
-    console.log(userAry);
-    fs.writeFileSync(path.join(__dirname, '..', 'model', 'user.json'),JSON.stringify(userAry),'utf-8');
-    const resData = {success : true , message : userInfo}
+    let userInfo = req.body;
+    if(userInfo.email == ''){
+        resData = {success : true , message : userAry}
+    }else {
+        userAry.push(userInfo);
+        console.log(userAry);
+        fs.writeFileSync(path.join(__dirname, '..', 'model', 'user.json'),JSON.stringify(userAry),'utf-8');
+        resData = {success : true , message : userInfo}
+    }
     res.send(resData)
 }
 const registerdone = (req,res)=>{

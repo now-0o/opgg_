@@ -2,7 +2,10 @@ const allBtn = document.querySelector('.all-btn');
 const opionSearch = document.querySelector('.option-search input');
 const champWraps = document.querySelectorAll('.champ-wrap');
 const arrows= document.querySelectorAll('.arrow');
+const topSearch = document.querySelector('#topSearch');
 let searchValue;
+
+const gameVersion = '13.1.1';
 
 
 window.onload = function(){
@@ -32,7 +35,7 @@ fetch('/champ.json')
             let champImg = Object.values(out);
             let champName = Object.keys(out);
             let doms = '';
-            const imgTag = `<div class='champ-wrap'><div class='champ-img'><img src="http://ddragon.leagueoflegends.com/cdn/13.1.1/img/champion/${champImg[num]}" alt=""></div><span class='champ-name'> ${champName[num]}</span>`
+            const imgTag = `<div class='champ-wrap'><div class='champ-img'><img src="http://ddragon.leagueoflegends.com/cdn/${gameVersion}/img/champion/${champImg[num]}" alt=""></div><span class='champ-name'> ${champName[num]}</span>`
             doms += imgTag;
             document.querySelector('.champ-box').innerHTML += doms;
             num ++;
@@ -71,10 +74,10 @@ fetch('/champ.json')
                     <span class='name-info'>${koNameInfo}</span>
                     <span class='lane-info'>- ${laneInfo}</span>
                     <div class='skill-wrap'>
-                        <img src='http://ddragon.leagueoflegends.com/cdn/13.1.1/img/spell/${enNameInfo}Q.png'>
-                        <img src='http://ddragon.leagueoflegends.com/cdn/13.1.1/img/spell/${enNameInfo}W.png'>
-                        <img src='http://ddragon.leagueoflegends.com/cdn/13.1.1/img/spell/${enNameInfo}E.png'>
-                        <img src='http://ddragon.leagueoflegends.com/cdn/13.1.1/img/spell/${enNameInfo}R.png'>
+                        <img src='http://ddragon.leagueoflegends.com/cdn/${gameVersion}/img/spell/${enNameInfo}Q.png'>
+                        <img src='http://ddragon.leagueoflegends.com/cdn/${gameVersion}/img/spell/${enNameInfo}W.png'>
+                        <img src='http://ddragon.leagueoflegends.com/cdn/${gameVersion}/img/spell/${enNameInfo}E.png'>
+                        <img src='http://ddragon.leagueoflegends.com/cdn/${gameVersion}/img/spell/${enNameInfo}R.png'>
                     </div>
                 </div>
                 </div>`
@@ -85,7 +88,7 @@ fetch('/champ.json')
                 document.querySelectorAll('.bottom-info').forEach(botInfo=>{
                     botInfo.classList.add('active');
                 })
-                fetch(`http://ddragon.leagueoflegends.com/cdn/13.1.1/data/ko_KR/champion/${enNameInfo}.json`)
+                fetch(`http://ddragon.leagueoflegends.com/cdn/${gameVersion}/data/ko_KR/champion/${enNameInfo}.json`)
                 .then(res=>res.json())
                 .then(res=>{
                     for(champ in res.data){
@@ -97,7 +100,7 @@ fetch('/champ.json')
                         `
                         <div class='skill-box'>
                             <div class='skillTop'>    
-                                <img src='http://ddragon.leagueoflegends.com/cdn/13.1.1/img/spell/${enNameInfo}Q.png'>
+                                <img src='http://ddragon.leagueoflegends.com/cdn/${gameVersion}/img/spell/${enNameInfo}Q.png'>
                                 <div class='s-name'>${resChamp.spells[0].name}</div>
                             </div>
                             <div class='s-info'>${resChamp.spells[0].description}</div>
@@ -105,7 +108,7 @@ fetch('/champ.json')
                             재사용대기시간(초) : ${resChamp.spells[0].cooldown[0]}/${resChamp.spells[0].cooldown[1]}/${resChamp.spells[0].cooldown[2]}/${resChamp.spells[0].cooldown[3]}/${resChamp.spells[0].cooldown[4]}
                             </div>
                             <div class='skillTop'>    
-                                <img src='http://ddragon.leagueoflegends.com/cdn/13.1.1/img/spell/${enNameInfo}W.png'>
+                                <img src='http://ddragon.leagueoflegends.com/cdn/${gameVersion}/img/spell/${enNameInfo}W.png'>
                                 <div class='s-name'>${resChamp.spells[1].name}</div>
                             </div>
                             <div class='s-info'>${resChamp.spells[1].description}</div>
@@ -113,7 +116,7 @@ fetch('/champ.json')
                             재사용대기시간(초) : ${resChamp.spells[1].cooldown[0]}/${resChamp.spells[1].cooldown[1]}/${resChamp.spells[1].cooldown[2]}/${resChamp.spells[1].cooldown[3]}/${resChamp.spells[1].cooldown[4]}
                             </div>
                             <div class='skillTop'>    
-                                <img src='http://ddragon.leagueoflegends.com/cdn/13.1.1/img/spell/${enNameInfo}E.png'>
+                                <img src='http://ddragon.leagueoflegends.com/cdn/${gameVersion}/img/spell/${enNameInfo}E.png'>
                                 <div class='s-name'>${resChamp.spells[2].name}</div>
                             </div>
                             <div class='s-info'>${resChamp.spells[2].description}</div>
@@ -121,7 +124,7 @@ fetch('/champ.json')
                             재사용대기시간(초) : ${resChamp.spells[2].cooldown[0]}/${resChamp.spells[2].cooldown[1]}/${resChamp.spells[2].cooldown[2]}/${resChamp.spells[2].cooldown[3]}/${resChamp.spells[2].cooldown[4]}
                             </div>
                             <div class='skillTop'>    
-                                <img src='http://ddragon.leagueoflegends.com/cdn/13.1.1/img/spell/${enNameInfo}R.png'>
+                                <img src='http://ddragon.leagueoflegends.com/cdn/${gameVersion}/img/spell/${enNameInfo}R.png'>
                                 <div class='s-name'>${resChamp.spells[3].name}</div>
                             </div>
                             <div class='s-info'>${resChamp.spells[3].description}</div>
@@ -215,4 +218,16 @@ arrows.forEach(arrow=>{
         arrow.classList.toggle('active');
         this.parentElement.parentElement.classList.toggle('accordion');
     })
+})
+
+function setCookieHandle(name){
+    document.cookie = `Name=${name};max-age=${60*60}`;  
+}
+
+topSearch.addEventListener('keydown',function(e){
+    if(e.keyCode == 13){
+        e.preventDefault();
+        setCookieHandle(`${topSearch.value}`);
+    }
+    location.href = '/summoners'
 })
