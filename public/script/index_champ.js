@@ -1,5 +1,5 @@
 const allBtn = document.querySelector('.all-btn');
-const opionSearch = document.querySelector('.option-search input');
+const optionSearch = document.querySelector('.option-search input');
 const champWraps = document.querySelectorAll('.champ-wrap');
 const arrows= document.querySelectorAll('.arrow');
 const topSearch = document.querySelector('#topSearch');
@@ -164,7 +164,7 @@ fetch('/champ.json')
                 })
                 const champWrapLanes = document.querySelectorAll(`.champ-wrap.${optionImg[i].parentElement.getAttribute('value')}`);
                 champWrapLanes.forEach((champWrapLane)=>{
-                    if(opionSearch.value===''){
+                    if(optionSearch.value===''){
                         champWrapLane.classList.remove('active');
                     }
                     else {
@@ -175,14 +175,17 @@ fetch('/champ.json')
                 })
             });
         })
-        opionSearch.addEventListener('keyup',()=>{
-            searchValue = opionSearch.value;
+        optionSearch.addEventListener('keyup',()=>{
+            searchValue = optionSearch.value;
             champWraps.forEach(champ=>{
                 champ.classList.add('active');
                 if(champ.innerHTML.indexOf(searchValue)>-1){
                     champ.classList.remove('active');
                 }
             })
+            if(searchValue == '진진'){
+                champWraps[104].classList.remove('active');
+            }
         })
 })
 
