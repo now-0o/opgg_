@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const fs = require('fs');
+const cors = require('cors')
 let userInfo = {};
 
 const root = require('./routes/root')
@@ -13,6 +14,9 @@ app.use(express.static(path.join(__dirname, 'model')));
 app.use(express.json());
 app.use(express.urlencoded({extended :false}));
 
+app.use(cors({
+    origin: '*'
+}))
 app.use('/' , root);
 app.use('/login' , login);
 app.use('/' , topmenu);

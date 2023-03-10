@@ -339,7 +339,7 @@ a.login {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     gap: 3px;
 }
 .match-container {
@@ -379,6 +379,7 @@ a.login {
 .game-info>div {
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 .game-type {
     font-weight: 600;
@@ -389,6 +390,27 @@ a.login {
 }
 .game-dura {
     color: #9aa4af;
+}
+.game-ago::after {
+    content: '';
+    display: block;
+    width: 60%;
+    height: 1px;
+    background-color: var(--resultWin);
+    opacity: .2;
+    bottom: 36px;
+    position: absolute;
+}
+.game-ago.lose::after {
+    background-color: var(--resultLose);
+}
+.game-result {
+    font-weight: 600;
+    color: #758592;
+}
+.game-ago {
+    color: #9E9EB1;
+    margin-bottom: 13px;
 }
 .user-info {
     display: flex;
@@ -458,6 +480,7 @@ a.login {
     color: var(--resultLose);
 }
 .kdaPer {
+    color: #758592;
     font-size: 12px;
 }
 .item-box {

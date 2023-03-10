@@ -79,6 +79,7 @@ fetch(url)
             fetch(matchIdUrl)
             .then(res=>res.json())
             .then(res=>{
+                console.log(res)
                 let gameCount = res.length;
                 let spellArys;
                 let runeArys;
@@ -96,7 +97,18 @@ fetch(url)
                     const matchUrl = `https://asia.api.riotgames.com/lol/match/v5/matches/${res[i]}?api_key=${token}`
                     fetch(matchUrl).then(res=>res.json())
                     .then(res=>{
-                        console.log(res.info); 
+                        let date = Math.floor((new Date() - new Date(res.info.gameEndTimestamp))/60000);
+                        let gameAgo;
+                        if(date < 60){
+                            gameAgo = Math.floor(date) + '분 전';
+                        }else if(date < 1440){
+                            gameAgo = Math.floor(date/60) + '시간 전';
+                        }else if(date < 43200){
+                            gameAgo = Math.floor(date/1440) + '일 전'
+                        }else {
+                            gameAgo = Math.floor(date/43200) + '달 전'
+                        }
+                        
                         let userTeamId = 0;
                         let userData = {};
                         res.info.participants.forEach(player=> {
@@ -146,11 +158,14 @@ fetch(url)
                                 }
                             }
                         });
-                        let result = 'win'
+                        let result = 'win';
+                        let resultKo = '승리';
                         if(res.info.teams[userTeamId].win == false){
                             result = 'lose'
+                            resultKo = '패배'
                         }else {
                             result = 'win'
+                            result = '승리'
                         }
                         let runeInfo = `https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/${userData.userMainRune[0]}/${userData.userMainRune[1]}/${userData.userMainRune[1]}.png`;
                         if(userData.userMainRune[1] == 'LethalTempo'){
@@ -160,19 +175,41 @@ fetch(url)
                         if(userData.userKda[1] == 0) {
                             kdaPer = 'Perfect';
                         }
-                        let gameType = '';
                         let matchDoms = '';
                         let gameDuraMin = Math.floor(res.info.gameDuration/60);
                         let gameDuraSec = res.info.gameDuration%60;
                         let gameDura = `${gameDuraMin}분 ${gameDuraSec}초`
-                        if(res.info.gameMode == 'CLASSIC'){gameType = '클래식'}
-                        else gameType = '무작위 총력전';
+                        const gameType = {
+                            400: '일반', //Normal Draft Pick
+                            420: '솔랭',
+                            430: '일반',
+                            440: '자랭',
+                            450: '무작위 총력전',
+                            700: '격전',
+                            800: 'AI 대전',  // Deprecated
+                            810: 'AI 대전',  // Deprecated
+                            820: 'AI 대전',  // Deprecated
+                            830: 'AI 대전',
+                            840: 'AI 대전',
+                            850: 'AI 대전',
+                            900: 'URF',
+                            920: '포로왕',
+                            1020: '단일모드',
+                            1300: '돌격 넥서스',
+                            1400: '궁극기 주문서', // Ultimate Spellbook
+                            2000: '튜토리얼',
+                            2010: '튜토리얼',
+                            2020: '튜토리얼',
+                        }
+                        let gameNum = res.info.queueId
                         const macthTag = `
                                 <li class='match-box ${result}'>
                                     <div class='result-color'></div>
                                     <div class='game-info'>
                                         <div>
-                                            <span class='game-type'>${gameType}</span>
+                                            <span class='game-type'>${gameType[gameNum]}</span>
+                                            <span class='game-ago ${result}'>${gameAgo}</span>
+                                            <span class='game-result'>${resultKo}</span>
                                             <span class='game-dura'>${gameDura}</span>
                                         </div>
                                     </div>

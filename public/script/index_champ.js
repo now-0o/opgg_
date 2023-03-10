@@ -227,10 +227,10 @@ function setCookieHandle(name){
     document.cookie = `Name=${name};max-age=${60*60}`;  
 }
 
-topSearch.addEventListener('keydown',function(e){
-    if(e.keyCode == 13){
-        e.preventDefault();
-        setCookieHandle(`${topSearch.value}`);
-    }
-    location.href = '/summoners'
-})
+// topSearch.addEventListener('keydown',function(e){
+//     if(e.keyCode == 13){
+//         e.preventDefault();
+//         setCookieHandle(`${topSearch.value}`);
+//         location.href = '/summoners'
+//     }
+// })
