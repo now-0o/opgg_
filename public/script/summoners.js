@@ -4,7 +4,7 @@ const matchCon = document.querySelector('.match-container');
 const topSearch = document.querySelector('#topSearch');
 
 const gameVersion = '13.1.1'
-const token = 'RGAPI-c7c497f6-9280-40e7-b817-0134f9afe3c4'
+const token = config.apikey;
 const url = `https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/${document.cookie.split('=')[1]}?api_key=${token}`
 fetch(url)
     .then(res => res.json())
