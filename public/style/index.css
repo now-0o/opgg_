@@ -220,6 +220,7 @@ a.login {
     align-items: center;
     font-size: 13px;
     font-weight: 300;
+    padding: 0 10px;
 }
 .search-contents p {
     font-weight: 500;

@@ -178,12 +178,13 @@ fetch('/champ.json')
         optionSearch.addEventListener('keyup',()=>{
             searchValue = optionSearch.value;
             champWraps.forEach(champ=>{
+                // console.log(champ.childNodes[1].innerHTML)
                 champ.classList.add('active');
-                if(champ.innerHTML.indexOf(searchValue)>-1){
+                if(champ.childNodes[1].innerHTML.indexOf(searchValue) > -1){
                     champ.classList.remove('active');
                 }
             })
-            if(searchValue == '진진'){
+            if(searchValue === '진진'){
                 champWraps[104].classList.remove('active');
             }
         })

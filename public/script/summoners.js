@@ -43,7 +43,7 @@ fetch(url)
                     console.log(res[0])      
                     const winPer = Math.ceil((res[0].wins/(res[0].wins + res[0].losses))*100)   
                     const tier = `${res[0].tier}`
-                    const tierImg = `/images/${tier} (1).png`
+                    const tierImg = `/images/T${tier}.png`
                     tierTag = 
                     `
                         <p>솔로랭크</p>
