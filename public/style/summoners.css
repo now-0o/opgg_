@@ -266,11 +266,20 @@ a.login {
     margin: 10px auto;
     background-color: #eaeef1;
     display: flex;
+    justify-content: space-between;
     gap: 10px;
 }
-.tier-container {
+.right-contents {
     width: 30%;
-    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.left-contents {
+    width: 70%;
+}
+.tier-content, .chart-content {
+    width: 100%;
     background-color: white;
     position: relative;
     border-radius: 10px;
@@ -280,11 +289,11 @@ a.login {
     gap: 10px;
     padding: 10px
 }
-.tier-container p {
+.tier-content p, .chart-content p {
     font-weight: 500;
     font-size: 12px;
 }
-.tier-container p::after {
+.tier-content p::after, .chart-content p::after {
     content: '';
     display: block;
     width: 100%;
@@ -295,12 +304,13 @@ a.login {
     left: 0;
 }
 .tierInfo {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     gap: 10px;
     margin-top: 15px;
 }
-.tier-content {
+.tier-box {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -328,6 +338,29 @@ a.login {
     font-size: 12px;
     color: #aeaeae;
 }
+.chart {
+    position: relative;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+}
+.center {
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--resultWin);
+}
+
 .unrank {
     color: var(--top_menu);
     font-weight: 500;
@@ -342,8 +375,8 @@ a.login {
     align-items: flex-end;
     gap: 3px;
 }
-.match-container {
-    width: 70%;
+.match-content {
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -353,12 +386,16 @@ a.login {
     height: 100px;
     background-color: var(--gameWin);
     display: flex;
+    justify-content: space-between;
     margin: 0 auto;
     border-radius: 10px;
     gap: 10px;
 }
 .match-box.lose {
     background-color: var(--gameLose);
+}
+.match-first-content {
+    display: flex;
 }
 .result-color {
     background-color: var(--resultWin);
@@ -413,13 +450,14 @@ a.login {
     margin-bottom: 13px;
 }
 .user-info {
+    width: 220px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
     position: relative;
-    padding-left: 30px;
-    gap: 15px;
+    gap: 10px;
+    padding: 10px;
 }
 .user-middle {
     display: flex;
@@ -443,7 +481,7 @@ a.login {
     align-items: center;
     position: absolute;
     bottom: 40px;
-    left: 60px;
+    left: 40px;
     background-color: rgb(24, 24, 24);
     font-size: 10px;
     width: 18px;
@@ -469,7 +507,7 @@ a.login {
     border-radius: 25px;
 }
 .kda-box {
-    font-size: 16px;
+    font-size: 14px;
     color: var(--top_menu);
     margin-left: 5px;
 }
@@ -502,6 +540,70 @@ a.login {
 .item-box img{
     width: 20px;
     border-radius: 3px;
+}
+.play-data {
+    font-size: 12px;
+    color: #758592;
+    padding: 5px;
+}
+.killPoint {
+    color: #d31a45;
+}
+.player-info {
+    display: flex;
+    gap: 20px;
+    padding: 10px;
+}
+.player-info ul {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.player-info li {
+    display: flex;
+    height: 15px;
+    align-items: center;
+    gap: 3px;
+}
+.champ-img-box {
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.champ-img-box img {
+    width: 100%;
+}
+.player-name {
+    width: 50px;
+    font-size: 12px;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #758592;
+}
+.more-info {
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    background-color: #d5e3ff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+.more-info.lose {
+    background-color: #ffd8d9;
+}
+.bx-chevron-down {
+    color: var(--resultWin);
+    font-size: 25px;
+}
+.more-info.lose .bx-chevron-down {
+    color: var(--resultLose);
 }
 
 .footer-contents {
