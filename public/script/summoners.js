@@ -4,7 +4,7 @@ const matchCon = document.querySelector('.match-content');
 const topSearch = document.querySelector('#topSearch');
 const chart = document.querySelector('.chart');
 
-const gameVersion = '13.1.1'
+const gameVersion = '13.6.1'
 const token = config.apikey;
 const url = `https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/${document.cookie.split('=')[1]}?api_key=${token}`
 // topCon.innerHTML = '<p>OP.GG에 등록되지 않은 소환사입니다. 확인 후 다시 검색해주세요.</p>'
@@ -192,6 +192,8 @@ fetch(url)
                     let runeInfo = `https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/${userData.userMainRune[0]}/${userData.userMainRune[1]}/${userData.userMainRune[1]}.png`;
                     if(userData.userMainRune[1] == 'LethalTempo'){
                         runeInfo = `https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/${userData.userMainRune[0]}/${userData.userMainRune[1]}/${userData.userMainRune[2]}.png`;
+                    }else if(userData.userMainRune[1] == 'Aftershock'){
+                        runeInfo = `https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/${userData.userMainRune[0]}/Veteran${userData.userMainRune[1]}/Veteran${userData.userMainRune[1]}.png`;
                     }
                     let kdaPer = ((userData.userKda[0]+userData.userKda[2])/userData.userKda[1]).toFixed(2);
                     if(userData.userKda[1] == 0) {
