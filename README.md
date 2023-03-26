@@ -37,11 +37,11 @@ const config = {
 # :computer: 페이지 구성 
 | 메인 페이지 |
 |---|
-|<img src="https://user-images.githubusercontent.com/117905287/225331673-ce9d4ce5-6a7c-4c3f-9fe8-9ccbdeaddb38.png">|
+|<img src="https://user-images.githubusercontent.com/117905287/227774190-28be9f1d-0c9c-430a-8da0-8645fe8927ae.png">|
 
 | 챔피언 분석 페이지 |
 |---|
-<img src="https://user-images.githubusercontent.com/117905287/225333516-51e87e25-8009-4af1-bddd-ef2fd8197d88.png">|
+<img src="https://user-images.githubusercontent.com/117905287/227774313-bf6dc03d-801d-43ef-b7eb-606283c27d57.png">|
 
 | 전적 검색 페이지 <span style="opacity : 0.3; font-weight : 400"> - 진행 중</span> |
 |---|

@@ -317,13 +317,9 @@ fetch(url)
         topCon.innerHTML = '<p>OP.GG에 등록되지 않은 소환사입니다. 확인 후 다시 검색해주세요.</p>'
         document.querySelector('.bottom-container').style.display = 'none';
     })
-function setCookieHandle(name){
-    document.cookie = `Name=${name};max-age=${60*60}`;  
-}
 
 topSearch.addEventListener('keydown', function(e){
     if(e.keyCode == 13){
-        setCookieHandle(`${topSearch.value}`);
-        location.reload();
+        location.href = `/summoners?${e.target.value}`;
     }
 })
