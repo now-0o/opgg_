@@ -16,23 +16,6 @@ const url = 'http://localhost:3000/login/register/userInfo';
 
 let userAry;
 
-window.onload = function(){
-    const userInfo =  {
-        email : userEmail.value,
-        nickname : nickname.value,
-        pwd : userPwd.value
-    }
-    fetch(url, {
-        method: 'POST', 
-        body:JSON.stringify(userInfo),
-        headers : {'Content-Type':'application/json;charset=utf-8'}
-    })
-    .then(res=>res.json())
-    .then(res=>{
-        userAry = res.message
-    })
-}
-
 userEmail.addEventListener('keyup',function(){
     if(this.value.length > 0 &&!(emailRegex).test(this.value)){
         userEmailP.style.display = 'flex';
@@ -42,14 +25,6 @@ userEmail.addEventListener('keyup',function(){
     }else {
         userEmailP.style.display = 'none';
         emailToken = true;
-        nextHandle();
-    }
-})
-userEmail.addEventListener('blur',function(){
-    if(userAry.find(user=> user.email == this.value)){
-        userEmailP.style.display = 'flex';
-        userEmailP.innerHTML = '이미 사용중이거나 탈퇴한 이메일 ID 입니다.';
-        emailToken = false;
         nextHandle();
     }
 })
@@ -87,7 +62,8 @@ userPwd.addEventListener('keyup',function(){
     }
 })
 
-nextBtn.addEventListener('click',()=>{
+nextBtn.addEventListener('click',(e)=>{
+    e.preventDefault();
     if(nextBtn.classList.contains('active')){
         const userInfo =  {
             email : userEmail.value,
@@ -100,8 +76,16 @@ nextBtn.addEventListener('click',()=>{
             headers : {'Content-Type':'application/json;charset=utf-8'}
         })
         .then(res=>res.json())
-        .then(res=>console.log(res))
-        location.href = '/login/register/done'               
+        .then(res=>{
+            if(!res.success){
+                alert(res.message);
+                userEmail.value = '';
+                nickname.value = '';
+                userPwd.value = '';
+            }else{
+                location.href = '/login/register/done';
+            }
+        })          
     }
 })
 

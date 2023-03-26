@@ -3,8 +3,6 @@ const app = express();
 const path = require('path');
 const fs = require('fs');
 const cors = require('cors')
-const mariadb = require('mariadb');
-const pool = mariadb.createPool();
 let userInfo = {};
 
 const root = require('./routes/root')
