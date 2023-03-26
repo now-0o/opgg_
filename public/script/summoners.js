@@ -6,13 +6,14 @@ const chart = document.querySelector('.chart');
 
 const gameVersion = '13.6.1'
 const token = config.apikey;
-const url = `https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/${document.cookie.split('=')[1]}?api_key=${token}`
+const url = `https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/${location.search.split('?')[1]}?api_key=${token}`
 // topCon.innerHTML = '<p>OP.GG에 등록되지 않은 소환사입니다. 확인 후 다시 검색해주세요.</p>'
 topCon.innerHTML = '<p>Loading ...</p>'
 document.querySelector('.bottom-container').style.display = 'none';
 fetch(url)
     .then(res => res.json())
     .then(res => {
+        if(res.id){
         topCon.innerHTML = ''
         document.querySelector('.bottom-container').style.display = 'flex';
         const puuid = res.puuid;
@@ -310,7 +311,8 @@ fetch(url)
                     // matchCon.innerHTML += matchDoms;
                 })  
             } 
-        })
+        })}else {topCon.innerHTML = '<p>OP.GG에 등록되지 않은 소환사입니다. 확인 후 다시 검색해주세요.</p>'
+        document.querySelector('.bottom-container').style.display = 'none';}
     }).catch(err =>{
         topCon.innerHTML = '<p>OP.GG에 등록되지 않은 소환사입니다. 확인 후 다시 검색해주세요.</p>'
         document.querySelector('.bottom-container').style.display = 'none';

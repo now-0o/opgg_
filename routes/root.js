@@ -5,6 +5,6 @@ const { index, indexChamp, summoners } = require('../controllers/root');
 
 router.get('^\/$|index(.html)?', index);
 router.get('/subdir/index_champ',indexChamp)
-router.get('/summoners',summoners)
+router.get('/summoners?:id',summoners)
 
 module.exports = router;

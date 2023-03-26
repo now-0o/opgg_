@@ -74,17 +74,12 @@ gnbOff.addEventListener('click',function(){
     gnbSlide.classList.remove('active');
 })
 
-function setCookieHandle(name){
-    document.cookie = `Name=${name};max-age=${60*60}`;  
-}
-
 const mainSearch = document.querySelector('.mainSearch')
 
 mainSearch.addEventListener('keydown',function(e){
-    if(e.keyCode == 13){
+    if(e.keyCode == 13 && e.target.value !== ''){
         e.preventDefault();
-        setCookieHandle(`${mainSearch.value}`);
-        location.href = `/summoners`;
+        location.href = `/summoners?${e.target.value}`;
     }
 })
 
