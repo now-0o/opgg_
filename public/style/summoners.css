@@ -289,11 +289,11 @@ a.login {
     gap: 10px;
     padding: 10px
 }
-.tier-content p, .chart-content p {
+.tier-content p, .chart-title {
     font-weight: 500;
     font-size: 12px;
 }
-.tier-content p::after, .chart-content p::after {
+.tier-content p::after, .chart-title::after {
     content: '';
     display: block;
     width: 100%;
@@ -359,6 +359,32 @@ a.login {
     font-weight: 600;
     font-size: 12px;
     color: var(--resultWin);
+}
+.chart-info {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10%;
+    padding: 5px 0;
+}
+.allKillPoint {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.totalresult {
+    font-size: 12px;
+}
+.totalPoint {
+    font-size: 12px;
+    color: var(--top_menu);
+}
+.totalDeath {
+    color: var(--resultLose);
+}
+.totalKillPer {
+    font-size: 20px;
+    font-weight: 500;
 }
 
 .unrank {

@@ -98,6 +98,9 @@ fetch(url)
             let matchAry = [];
             let totalWin = 0;
             let totalLose = 0;
+            let totalKill = 0;
+            let totalDeath = 0;
+            let totalAssist = 0;
             for(i=0;i<gameCount;i++){
                 const matchUrl = `https://asia.api.riotgames.com/lol/match/v5/matches/${res[i]}?api_key=${token}`
                 fetch(matchUrl).then(res=>res.json())
@@ -148,6 +151,13 @@ fetch(url)
                             let userKda = [player.kills, player.deaths, player.assists]
                             let userItem = [player.item0, player.item1, player.item2, player.item3, player.item4, player.item5, player.item6];
                             let userItemImg = [];
+                            totalKill += player.kills;
+                            totalDeath += player.deaths;
+                            totalAssist += player.assists;
+                            document.querySelector('.totalKill').innerHTML = totalKill / 10 + "/";
+                            document.querySelector('.totalDeath').innerHTML = totalDeath / 10;
+                            document.querySelector('.totalAssist').innerHTML = "/" + totalAssist / 10;
+                            document.querySelector('.totalKillPer').innerHTML = ((totalKill + totalAssist) / totalDeath).toFixed(2) + ":1";
                             let killPoint = Math.round((player.kills + player.assists)*100 / res.info.teams[userTeamId].objectives.champion.kills);
                             let wardPoint = player.visionWardsBoughtInGame;
                             let csPoint = player.totalMinionsKilled + player.neutralMinionsKilled
@@ -188,8 +198,12 @@ fetch(url)
                         totalWin ++;
                     }
                     let totalPer = (totalWin/(totalWin+totalLose))*100
+
+                    // 최근전적 차트
                     chart.style.background = `conic-gradient(#5383e8 0% ${totalPer}%, #e84057 ${totalPer}% 100%)`
                     document.querySelector('.center').innerHTML = Math.round(totalPer)+'%'
+                    document.querySelector('.totalresult').innerHTML = "10전 " + totalWin + "승 " + totalLose + "패";
+                    
                     let runeInfo = `https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/${userData.userMainRune[0]}/${userData.userMainRune[1]}/${userData.userMainRune[1]}.png`;
                     if(userData.userMainRune[1] == 'LethalTempo'){
                         runeInfo = `https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/${userData.userMainRune[0]}/${userData.userMainRune[1]}/${userData.userMainRune[2]}.png`;

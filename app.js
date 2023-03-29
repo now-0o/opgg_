@@ -5,9 +5,11 @@ const fs = require('fs');
 const cors = require('cors')
 let userInfo = {};
 
-const root = require('./routes/root')
-const login = require('./routes/login')
-const topmenu = require('./routes/topmenu')
+const root = require('./routes/root');
+const login = require('./routes/login');
+const topmenu = require('./routes/topmenu');
+
+const PORT = process.env.PORT;
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'model')));
@@ -25,6 +27,6 @@ app.get('/*', (req, res)=>{
     res.send('file not found');
 })
 
-app.listen(3000, ()=>{
-    console.log('app listening ', 3000);
+app.listen(PORT, ()=>{
+    console.log('app listening', PORT);
 })
