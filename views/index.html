@@ -162,6 +162,20 @@
                 line-height: 60px;
                 margin: 5px auto 20px;
             }
+            @media (max-width:760px) {
+                .search-box {
+                    width: 90%;
+                }
+                .main-contents img {
+                    width: 80%;
+                }
+                .footer-contents {
+                    flex-wrap: wrap;
+                }
+                .footer-logo-box {
+                    display: none;
+                }
+            }
         }
     </style>
 </head>
@@ -191,7 +205,7 @@
     </div>
     <div class="gnb-slide">
         <a href="#" class="gnb-off"><img src="./images/duo/cross.svg" alt=""></a>
-        <a href="./login.html">로그인</a>
+        <a href="/login">로그인</a>
         <span>지역 선택</span>
         <div class="gnb-country">
             <a href="#">KR</a>
@@ -414,7 +428,7 @@
     </section>
     <footer>
             <div class="footer-contents">
-                <div>
+                <div class="footer-logo-box">
                     <a href="#">
                         <img src="./images/opgglogo.svg" alt="" class="footer-logo">
                     </a>

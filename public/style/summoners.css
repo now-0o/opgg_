@@ -169,7 +169,7 @@ a.login {
 .topSearch-container {
     width: 200px;
     display: flex;
-    align-items: c;
+    align-items: center;
     background-color: white;
     padding: 5px 5px;
     border-radius: 3px;
